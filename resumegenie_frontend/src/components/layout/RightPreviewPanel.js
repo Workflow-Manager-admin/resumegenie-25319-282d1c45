@@ -28,7 +28,7 @@ function RightPreviewPanel({ activeSection, selectedTemplate, previewMode, formD
       {!previewOpen && (
         <button
           aria-label="Open preview panel"
-          onClick={onTogglePreviewPanel}
+          onClick={() => onTogglePreviewPanel && onTogglePreviewPanel()}
           style={{
             position: 'fixed',
             right: 0,

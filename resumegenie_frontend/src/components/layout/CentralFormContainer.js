@@ -785,7 +785,7 @@ function CentralFormContainer({
             borderStyle: 'solid',
             borderColor: 'var(--accent)'
           }}
-          onClick={onTogglePreviewPanel}
+          onClick={() => onTogglePreviewPanel && onTogglePreviewPanel()}
         >
           {/* Chevron left icon */}
           <svg width="21" height="21" aria-hidden="true" style={{marginRight: '5px', verticalAlign:'middle'}}>
