@@ -2,9 +2,9 @@
 > react-kavia@0.1.0 start
 > react-scripts start
 
-(node:5017) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:5354) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:5017) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:5354) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled successfully!
@@ -18,43 +18,3 @@ Note that the development build is not optimized.
 To create a production build, use npm run build.
 
 webpack compiled successfully
-Compiling...
-Compiled successfully!
-webpack compiled successfully
-Compiling...
-Compiled successfully!
-webpack compiled successfully
-Compiling...
-Compiled with warnings.
-
-Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-WARNING in ./src/App.js 160:18-33
-Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-WARNING in ./src/App.js 182:27-41
-Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 2 warnings
-Compiling...
-Compiled with warnings.
-
-Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-WARNING in ./src/App.js 160:18-33
-Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-WARNING in ./src/App.js 182:27-41
-Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 2 warnings
