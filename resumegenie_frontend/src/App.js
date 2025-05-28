@@ -22,6 +22,10 @@ function App() {
     { id: 'education', label: 'Education' },
     { id: 'experience', label: 'Experience' },
     // Add further sections as needed, e.g. skills, projects etc
+    { id: 'projects', label: 'Projects (optional)', optional: true },
+    { id: 'skills', label: 'Skills' },
+    { id: 'certifications', label: 'Certifications (optional)', optional: true },
+    { id: 'achievements', label: 'Achievements (optional)', optional: true }
   ];
 
   // Maintain active section as state
@@ -32,7 +36,23 @@ function App() {
 
   // Preview mode: 'resume' or 'cover'
   const [previewMode, setPreviewMode] = useState('resume');
-  // TODO: In future, sync this state with a Cover Letter section in the LeftNav.
+
+  // LIFTED form data/state for real-time preview (formerly in CentralFormContainer)
+  const [formData, setFormData] = useState({
+    personal: {
+      fullName: '', email: '', phone: '', address: ''
+    },
+    education: [{
+      school: '', degree: '', startDate: '', endDate: '', description: ''
+    }],
+    experience: [{
+      jobTitle: '', employer: '', startDate: '', endDate: '', description: ''
+    }],
+    projects: [],
+    skills: [],
+    certifications: [],
+    achievements: [],
+  });
 
   // Placeholder: Export (PDF/Docx) - currently alerts
   const handleExport = type => {
@@ -77,11 +97,15 @@ function App() {
           sectionLabel={sections.find(s => s.id === activeSection)?.label || ''}
           previewMode={previewMode}
           onAISuggest={handleAISuggest}
+          // Pass formData and updater as CONTROLLED PROPS
+          formData={formData}
+          setFormData={setFormData}
         />
         <RightPreviewPanel
           activeSection={activeSection}
           selectedTemplate={selectedTemplate}
           previewMode={previewMode}
+          formData={formData}
         />
       </main>
     </div>
