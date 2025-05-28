@@ -3,10 +3,11 @@ import React from 'react';
 /**
  * CentralFormContainer for the main form-based UI.
  * Responsive, visually distinct, and accessible.
+ * Receives props for current section/label to display contextually.
  *
  * PUBLIC_INTERFACE
  */
-function CentralFormContainer() {
+function CentralFormContainer({ sectionId, sectionLabel }) {
   return (
     <section
       className="central-form-container"
@@ -24,12 +25,13 @@ function CentralFormContainer() {
       tabIndex={0}
     >
       <h2 style={{ color: 'var(--kavia-orange)', fontWeight: 600, marginTop: 0 }}>
-        {/* Section Title Placeholder */}
-        Build Your Resume
+        {sectionLabel || 'Build Your Resume'}
       </h2>
-      {/* Form fields/components go here (to be implemented) */}
+      {/* Form fields/components go here (to be implemented later) */}
       <div style={{ color: 'var(--text-secondary)' }}>
-        Form section stubs will be inserted here...
+        {sectionId
+          ? `Form section placeholder for "${sectionLabel}" (${sectionId})`
+          : 'Form section stubs will be inserted here...'}
       </div>
     </section>
   );
