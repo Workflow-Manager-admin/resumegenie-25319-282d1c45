@@ -187,7 +187,7 @@ function App() {
         previewMode={previewMode}
         onTogglePreviewMode={() => setPreviewMode(m => (m === 'resume' ? 'cover' : 'resume'))}
         previewOpen={previewOpen}
-        onTogglePreviewPanel={() => setPreviewOpen(val => !val)}
+        onTogglePreviewPanel={togglePreviewPanel}
         // Future props for AI/export/menu controls
       />
       <main
@@ -215,7 +215,7 @@ function App() {
           formData={formData}
           setFormData={setFormData}
           previewOpen={previewOpen}
-          onTogglePreviewPanel={() => setPreviewOpen(val => !val)}
+          onTogglePreviewPanel={togglePreviewPanel}
         />
         <RightPreviewPanel
           activeSection={activeSection}
@@ -223,7 +223,7 @@ function App() {
           previewMode={previewMode}
           formData={formData}
           previewOpen={previewOpen}
-          onTogglePreviewPanel={() => setPreviewOpen(val => !val)}
+          onTogglePreviewPanel={togglePreviewPanel}
         />
       </main>
     </div>
