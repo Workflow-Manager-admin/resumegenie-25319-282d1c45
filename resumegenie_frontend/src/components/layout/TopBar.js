@@ -79,6 +79,7 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             <select
               id="template-selector"
               value={selectedTemplate}
+              // PUBLIC_INTERFACE: Template selection propagates template change instantly upward to App
               onChange={e => onTemplateChange && onTemplateChange(e.target.value)}
               style={{
                 background: 'var(--panel-bg)',
