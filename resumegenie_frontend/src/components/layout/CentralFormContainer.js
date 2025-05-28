@@ -188,6 +188,38 @@ function CentralFormContainer({
     return () => window.removeEventListener('navSection', listener);
   }, []);
 
+  // --- AI Suggest Handler (modular for all sections, demo for "personal") ---
+  /**
+   * PUBLIC_INTERFACE
+   * Triggers AI suggestion/enhancement for a specific section and updates formData in place.
+   * For now, this is a stub/demo (improve grammar/case for "name" as example).
+   * @param {string} sectionId - The section to enhance (e.g. "personal")
+   */
+  const handleAISuggestSection = (sectionId) => {
+    if (sectionId === "personal") {
+      // Demo: Capitalize fullName, trim whitespace, suggest professionalized name format
+      setFormData(prev => ({
+        ...prev,
+        personal: {
+          ...prev.personal,
+          fullName: fakePersonalNameEnhance(prev.personal.fullName),
+          // Potential for further email/phone/address fixes here
+        }
+      }));
+    }
+    // Add logic for other sections here (education, experience, etc)
+  };
+
+  // Example stub for personal name "enhancement"
+  function fakePersonalNameEnhance(name) {
+    if (!name) return "";
+    // Title Case, trim, fix multiple spaces (basic, stub only)
+    return name
+      .trim()
+      .replace(/\s+/g, " ")
+      .replace(/\b(\w)/g, c => c.toUpperCase());
+  }
+
   // Field Renders per Section
   function renderSectionFields() {
     // Simple field + validation input builder
@@ -202,48 +234,78 @@ function CentralFormContainer({
       const data = formData.personal;
       const errs = errors.personal || {};
       return (
-        <form autoComplete="off" style={{ marginBottom: 18 }}>
-          <div>
-            <label style={labelStyle}>Full Name<span style={{ color: '#FB6565' }}> *</span></label>
-            <input
-              type="text"
-              required
-              value={data.fullName}
-              style={inputStyle}
-              onChange={e => handleInputChange('personal', undefined, 'fullName', e.target.value)}
-            />
-            {errs.fullName && <div style={errStyle}>{errs.fullName}</div>}
+        <div>
+          <form autoComplete="off" style={{ marginBottom: 18 }}>
+            <div>
+              <label style={labelStyle}>Full Name<span style={{ color: '#FB6565' }}> *</span></label>
+              <input
+                type="text"
+                required
+                value={data.fullName}
+                style={inputStyle}
+                onChange={e => handleInputChange('personal', undefined, 'fullName', e.target.value)}
+              />
+              {errs.fullName && <div style={errStyle}>{errs.fullName}</div>}
+            </div>
+            <div>
+              <label style={labelStyle}>Email<span style={{ color: '#FB6565' }}> *</span></label>
+              <input
+                type="email"
+                required
+                value={data.email}
+                style={inputStyle}
+                onChange={e => handleInputChange('personal', undefined, 'email', e.target.value)}
+              />
+              {errs.email && <div style={errStyle}>{errs.email}</div>}
+            </div>
+            <div>
+              <label style={labelStyle}>Phone Number</label>
+              <input
+                type="text"
+                value={data.phone}
+                style={inputStyle}
+                onChange={e => handleInputChange('personal', undefined, 'phone', e.target.value)}
+              />
+            </div>
+            <div>
+              <label style={labelStyle}>Address</label>
+              <input
+                type="text"
+                value={data.address}
+                style={inputStyle}
+                onChange={e => handleInputChange('personal', undefined, 'address', e.target.value)}
+              />
+            </div>
+          </form>
+          {/* AI Enhance Button for Personal section */}
+          <div style={{ margin: "12px 0 4px 0", textAlign: "right" }}>
+            <button
+              type="button"
+              className="btn"
+              style={{
+                background: "linear-gradient(88deg, var(--kavia-accent) 62%, var(--kavia-purple) 122%)",
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: 15.5,
+                padding: "8px 18px",
+                boxShadow: "0 2.5px 20px 0 rgba(190,115,211,0.10)",
+                border: "none"
+              }}
+              title="Let AI suggest how to improve your info"
+              onClick={() => handleAISuggestSection('personal')}
+            >
+              <span style={{marginRight: 6}}>✨</span>AI Suggest (Grammar/Tone)
+            </button>
+            <span style={{
+                marginLeft: 11,
+                color: 'var(--text-secondary)',
+                fontSize: 14
+              }}>
+              {/* Demo notice for user */}
+              (Proof-of-concept: improves "Full Name" capitalization)
+            </span>
           </div>
-          <div>
-            <label style={labelStyle}>Email<span style={{ color: '#FB6565' }}> *</span></label>
-            <input
-              type="email"
-              required
-              value={data.email}
-              style={inputStyle}
-              onChange={e => handleInputChange('personal', undefined, 'email', e.target.value)}
-            />
-            {errs.email && <div style={errStyle}>{errs.email}</div>}
-          </div>
-          <div>
-            <label style={labelStyle}>Phone Number</label>
-            <input
-              type="text"
-              value={data.phone}
-              style={inputStyle}
-              onChange={e => handleInputChange('personal', undefined, 'phone', e.target.value)}
-            />
-          </div>
-          <div>
-            <label style={labelStyle}>Address</label>
-            <input
-              type="text"
-              value={data.address}
-              style={inputStyle}
-              onChange={e => handleInputChange('personal', undefined, 'address', e.target.value)}
-            />
-          </div>
-        </form>
+        </div>
       );
     }
 
@@ -819,3 +881,9 @@ function SkillInput({ skills, onAdd, onRemove }) {
 }
 
 export default CentralFormContainer;
+
+/*
+ * The AI Suggest handler is currently a stub/demo for "personal" info.
+ * To expand: add more logic to handleAISuggestSection for other sectionIds ("education", etc),
+ * e.g., to clean up grammar in description fields, autofill entries, match tone to template, etc.
+ */
