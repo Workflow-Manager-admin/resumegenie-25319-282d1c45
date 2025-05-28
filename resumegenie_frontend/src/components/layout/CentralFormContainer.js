@@ -27,20 +27,28 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
       aria-label="Resume/Cover Letter Form"
       tabIndex={0}
     >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 2 }}>
-        <h2 style={{ color: 'var(--kavia-orange)', fontWeight: 600, marginTop: 0, marginBottom: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 10, marginLeft: 2 }}>
+        <h2 style={{
+          color: 'var(--kavia-accent)',
+          fontWeight: 700,
+          marginTop: 0,
+          marginBottom: 0,
+          fontSize: 24,
+          letterSpacing: 0.015 + 'em'
+        }}>
           {sectionLabel ? `${sectionLabel}` : 'Build Your Resume'}
         </h2>
         {/* Preview mode shown inline */}
         <span
           style={{
-            fontSize: 14,
-            color: '#be73d3',
+            fontSize: 14.2,
+            color: 'var(--accent)',
             fontWeight: 500,
             marginLeft: 4,
-            background: 'rgba(180,80,250,0.08)',
+            background: 'rgba(190,115,211,0.12)',
             borderRadius: 7,
-            padding: '2.5px 8px'
+            padding: '2.5px 8px',
+            letterSpacing: '0.02em'
           }}
         >
           Preview:&nbsp;{previewMode === 'resume' ? 'Resume' : 'Cover Letter'}
@@ -48,15 +56,15 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
         {/* AI Suggest button (disabled stub, enable after MVP) */}
         <button
           style={{
-            background: 'rgba(220, 144, 208, 0.13)',
-            color: '#be73d3',
+            background: 'rgba(190,115,211,0.10)',
+            color: 'var(--accent)',
             opacity: 0.45,
             cursor: 'not-allowed',
             border: 'none',
             borderRadius: 5,
-            marginLeft: 8,
+            marginLeft: 10,
             fontWeight: 500,
-            fontSize: 14,
+            fontSize: 14.3,
             padding: '4.5px 16px'
           }}
           aria-disabled="true"
