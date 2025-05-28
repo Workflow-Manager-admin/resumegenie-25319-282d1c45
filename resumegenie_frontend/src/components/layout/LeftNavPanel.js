@@ -3,10 +3,11 @@ import React from 'react';
 /**
  * LeftNavPanel for section navigation (Personal Info, Education, etc).
  * Visibly distinct, accessible and collapsible for small screens.
+ * Accepts sections list, activeSection, and onSectionChange handler as props.
  *
  * PUBLIC_INTERFACE
  */
-function LeftNavPanel() {
+function LeftNavPanel({ sections = [], activeSection, onSectionChange }) {
   return (
     <aside
       className="left-nav-panel"
@@ -26,13 +27,35 @@ function LeftNavPanel() {
       aria-label="Section Navigation"
       tabIndex={0}
     >
-      {/* Placeholder: Will contain nav links for form sections */}
+      {/* Navigation links for form sections */}
       <nav>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          <li><button style={{ background: 'none', border: 'none', color: 'inherit', font: 'inherit', cursor: 'pointer', padding: '8px 0', width: '100%', textAlign: 'left'}}>Personal Info</button></li>
-          <li><button style={{ background: 'none', border: 'none', color: 'inherit', font: 'inherit', cursor: 'pointer', padding: '8px 0', width: '100%', textAlign: 'left'}}>Education</button></li>
-          <li><button style={{ background: 'none', border: 'none', color: 'inherit', font: 'inherit', cursor: 'pointer', padding: '8px 0', width: '100%', textAlign: 'left'}}>Experience</button></li>
-          {/* More sections to come */}
+          {sections.map(section => (
+            <li key={section.id}>
+              <button
+                type="button"
+                onClick={() => onSectionChange && onSectionChange(section.id)}
+                style={{
+                  background: activeSection === section.id ? 'var(--kavia-orange)' : 'none',
+                  border: 'none',
+                  color: activeSection === section.id ? '#fff' : 'inherit',
+                  font: 'inherit',
+                  cursor: 'pointer',
+                  padding: '8px 14px',
+                  width: '100%',
+                  textAlign: 'left',
+                  fontWeight: activeSection === section.id ? 600 : 400,
+                  borderRadius: 4,
+                  marginBottom: 2,
+                  transition: 'background 0.13s, color 0.13s'
+                }}
+                aria-current={activeSection === section.id ? 'page' : undefined}
+                tabIndex={0}
+              >
+                {section.label}
+              </button>
+            </li>
+          ))}
         </ul>
       </nav>
     </aside>
