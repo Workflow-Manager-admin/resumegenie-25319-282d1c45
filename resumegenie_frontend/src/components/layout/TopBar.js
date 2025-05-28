@@ -150,7 +150,14 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             <span role="img" aria-label="AI Grammar/Tone">📝</span>
           </button>
 
-          {/* Export as PDF/Docx direct selectors (future, stub & disabled) */}
+          {/* === Export Download Buttons (PDF & Word) ===
+            The logic for exporting as PDF or Word will be added here.
+            These buttons are currently disabled (visual only).
+            Implementation plan:
+              - For PDF: Integrate a library such as jsPDF or html2pdf, and implement a handler here
+              - For DOCX: Consider using docx.js or server-based approach; add related handler here
+              - Connect each handler to actual "download" logic and enable controls when ready
+          */}
           <button
             className="btn"
             style={{
@@ -162,6 +169,7 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
               cursor: 'not-allowed',
               border: 'none'
             }}
+            // When enabled, call export-to-PDF handler here
             title="Export to PDF (coming soon)"
             disabled
             aria-disabled="true"
@@ -179,6 +187,7 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
               cursor: 'not-allowed',
               border: 'none'
             }}
+            // When enabled, call export-to-Word (DOCX) handler here
             title="Export to Word (.docx) (coming soon)"
             disabled
             aria-disabled="true"
