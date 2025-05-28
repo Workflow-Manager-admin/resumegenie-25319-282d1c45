@@ -6,7 +6,7 @@ import React, { useState, useMemo } from 'react';
  *
  * PUBLIC_INTERFACE
  */
-function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISuggest }) {
+function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISuggest, formData, setFormData }) {
   // Canonical steps (should match main sections for navigation)
   const sections = useMemo(() => [
     { id: 'personal', label: 'Personal Info' },
@@ -22,23 +22,7 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
   const stepIndex = Math.max(0, sections.findIndex(s => s.id === sectionId));
   const lastStep = sections.length - 1;
 
-  // Main form state: In-memory only
-  const [formData, setFormData] = useState({
-    personal: {
-      fullName: '', email: '', phone: '', address: ''
-    },
-    education: [{
-      school: '', degree: '', startDate: '', endDate: '', description: ''
-    }],
-    experience: [{
-      jobTitle: '', employer: '', startDate: '', endDate: '', description: ''
-    }],
-    projects: [],
-    skills: [],
-    certifications: [],
-    achievements: [],
-  });
-
+  // REMOVED formData local state; now controlled from parent (App)
   // Local error state for validation
   const [errors, setErrors] = useState({});
 
