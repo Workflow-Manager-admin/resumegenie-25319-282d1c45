@@ -85,6 +85,16 @@ body {
   overflow: hidden;
 }
 
+/* Show "reopen" button only on desktop (>=1050px), hide on tablet/mobile */
+.right-preview-reopen {
+  display: block;
+}
+@media (max-width: 1050px) {
+  .right-preview-reopen {
+    display: none !important;
+  }
+}
+
 /* Central container expands when preview closed */
 .central-form-container.preview-expanded {
   max-width: 1150px !important;
