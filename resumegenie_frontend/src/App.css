@@ -99,7 +99,32 @@ body {
   .central-form-container {
     border-right: none;
   }
+  .central-preview-fab {
+    display: flex !important;
+    position: fixed;
+    right: 12px;
+    bottom: 30px;
+    z-index: 110;
+    background: linear-gradient(91deg,var(--kavia-accent) 47%, var(--accent) 93%);
+    box-shadow: 0 2.5px 20px 0 rgba(34,22,55,0.20);
+    border-radius: 40px;
+    color: #fff;
+    font-size: 1.05em;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    padding: 0.7em 1.45em 0.7em 1.2em;
+    outline: none;
+    gap: 7px;
+    transition: background 0.14s, color 0.16s;
+    opacity: 0.97;
+    border: 2.3px solid var(--accent);
+    }
 }
+
+/* Show floating button only if panel is hidden on mobile.
+   If you use a .central-preview-fab with JS/CSS toggle, handle it with a class or inline. */
 
 @media (max-width: 750px) {
   .left-nav-panel {
