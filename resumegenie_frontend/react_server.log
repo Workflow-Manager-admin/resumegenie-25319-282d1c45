@@ -404,3 +404,6 @@ src/components/layout/CentralFormContainer.js
   Line 712:2:  Parsing error: Unexpected token (712:2)
 
 webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully

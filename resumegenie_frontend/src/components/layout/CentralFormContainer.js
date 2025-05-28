@@ -4,9 +4,21 @@ import React, { useState, useMemo } from 'react';
  * CentralFormContainer: Step-based, in-memory stateful form container.
  * Displays dynamic section forms, navigation controls, and handles validation.
  *
+ * This version adapts its width and layout based on the previewOpen prop,
+ * and provides a floating "Show Preview" button on mobile/when closed for accessibility.
+ *
  * PUBLIC_INTERFACE
  */
-function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISuggest, formData, setFormData, previewOpen, onTogglePreviewPanel }) {
+function CentralFormContainer({
+  sectionId,
+  sectionLabel,
+  previewMode,
+  onAISuggest,
+  formData,
+  setFormData,
+  previewOpen,
+  onTogglePreviewPanel
+}) {
   // Canonical steps (should match main sections for navigation)
   const sections = useMemo(() => [
     { id: 'personal', label: 'Personal Info' },
@@ -419,7 +431,6 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
     if (sectionId === 'skills') {
       const arr = formData.skills;
       const errorMsg = errors.skills?._self;
-      let newSkill = '';
       return (
         <div>
           <div style={{ marginBottom: 14 }}>
@@ -434,7 +445,7 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
                   setFormData(prev => ({ ...prev, skills: [...prev.skills, skill] }));
               }}
               onRemove={i => handleRemoveItem('skills', i)}
-              />
+            />
             {errorMsg && <div style={errStyle}>{errorMsg}</div>}
           </div>
         </div>
@@ -544,7 +555,10 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
   return (
     <>
       <section
-        className="central-form-container"
+        className={
+          "central-form-container" +
+          (!previewOpen ? " preview-expanded" : "")
+        }
         style={{
           flex: previewOpen ? '2 1 520px' : '3 1 950px',
           minWidth: 300,
@@ -559,151 +573,117 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
         aria-label="Resume/Cover Letter Form"
         tabIndex={0}
       >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 10, marginLeft: 2 }}>
-        <h2 style={{
-          color: 'var(--kavia-accent)',
-          fontWeight: 700,
-          marginTop: 0,
-          marginBottom: 0,
-          fontSize: 24,
-          letterSpacing: 0.015 + 'em'
-        }}>
-          {sectionLabel ? `${sectionLabel}` : 'Build Your Resume'}
-        </h2>
-        <span
-          style={{
-            fontSize: 14.2,
-            color: 'var(--accent)',
-            fontWeight: 500,
-            marginLeft: 4,
-            background: 'rgba(190,115,211,0.12)',
-            borderRadius: 7,
-            padding: '2.5px 8px',
-            letterSpacing: '0.02em'
-          }}
-        >
-          Preview:&nbsp;{previewMode === 'resume' ? 'Resume' : 'Cover Letter'}
-        </span>
-        {/* Mobile: floating preview panel toggle (only show when panel is hidden or on small screens) */}
-        <span className="central-preview-fab" style={{
-          display: 'none'
-        }}>
-          {/* Set by CSS media query; or forcibly display if previewOpen is false */}
-        </span>
-        {/* 
-          === AI Content Controls Placeholder Area ===
-          "AI Suggest" button is disabled, serves as stub for future AI-powered suggestions (grammar, spelling, tone, pre-fill).
-          When implemented, this will invoke an API that analyzes section fields or full document and provides recommended edits/content.
-          This button is duplicated in TopBar for global AI actions; instance here provides section-level recommendations.
-        */}
-        <button
-          style={{
-            background: 'rgba(190,115,211,0.10)',
-            color: 'var(--accent)',
-            opacity: 0.45,
-            cursor: 'not-allowed',
-            border: 'none',
-            borderRadius: 5,
-            marginLeft: 10,
-            fontWeight: 500,
-            fontSize: 14.3,
-            padding: '4.5px 16px'
-          }}
-          aria-disabled="true"
-          disabled
-          title="AI-powered content suggestion (coming soon)"
-          tabIndex={-1}
-        >
-          <span role="img" aria-label="AI">✨</span> AI Suggest
-        </button>
-        {/* 
-          === AI-powered grammar, spell, and tone indicators (planned) ===
-          Add future icons/labels for:
-            - Spell Check
-            - Grammar Check
-            - Tone/Style Feedback 
-            These will be used to show suggestions or highlight issues; UI as icons or notification chips.
-        */}
-        <div
-          style={{
-            display: 'flex', alignItems: 'center', marginLeft: 8, gap: 8, opacity: 0.36
-          }}
-          aria-label="AI grammar and tone suggestion placeholders"
-        >
-          <span title="Grammar Helper (coming soon)" role="img" aria-label="Grammar">📝</span>
-          <span title="Spell Check (coming soon)" role="img" aria-label="Spell-Check">🔤</span>
-          <span title="Tone Suggestion (coming soon)" role="img" aria-label="Tone">🎤</span>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 10, marginLeft: 2 }}>
+          <h2 style={{
+            color: 'var(--kavia-accent)',
+            fontWeight: 700,
+            marginTop: 0,
+            marginBottom: 0,
+            fontSize: 24,
+            letterSpacing: 0.015 + 'em'
+          }}>
+            {sectionLabel ? `${sectionLabel}` : 'Build Your Resume'}
+          </h2>
+          <span
+            style={{
+              fontSize: 14.2,
+              color: 'var(--accent)',
+              fontWeight: 500,
+              marginLeft: 4,
+              background: 'rgba(190,115,211,0.12)',
+              borderRadius: 7,
+              padding: '2.5px 8px',
+              letterSpacing: '0.02em'
+            }}
+          >
+            Preview:&nbsp;{previewMode === 'resume' ? 'Resume' : 'Cover Letter'}
+          </span>
         </div>
-        {/* 
-          === Pre-fill Content Stub UI (disabled) ===
-          This will allow future users to auto-populate form with role/industry-based example data using AI.
-        */}
+
+        {/* SECTION FIELDS */}
+        <div style={{ marginTop: 12 }}>
+          {renderSectionFields()}
+        </div>
+
+        {/* Navigation controls */}
+        <div style={{ display: 'flex', flexDirection: 'row', gap: 16, marginTop: 30 }}>
+          <button
+            className="btn"
+            style={{
+              background: 'linear-gradient(91deg, var(--kavia-purple) 87%, var(--kavia-accent) 115%)',
+              minWidth: 90, fontWeight: 600, opacity: stepIndex > 0 ? 1 : 0.6
+            }}
+            onClick={handlePrevious}
+            disabled={stepIndex === 0}
+          >
+            ← Previous
+          </button>
+          <button
+            className="btn btn-large"
+            style={{
+              minWidth: 120,
+              background: 'linear-gradient(93deg,var(--kavia-accent) 77%, var(--kavia-purple) 125%)',
+              fontWeight: 700
+            }}
+            onClick={handleNext}
+            disabled={stepIndex === lastStep}
+          >
+            {stepIndex === lastStep ? 'Done' : 'Next →'}
+          </button>
+        </div>
+        {/* Completion Progress */}
+        <div style={{
+          marginTop: 18,
+          fontSize: 14,
+          color: 'var(--accent)',
+          letterSpacing: '0.015em'
+        }}>
+          Step {stepIndex + 1} of {sections.length}
+          {sections[stepIndex]?.optional && (
+            <span style={{ color: 'var(--text-secondary)', marginLeft: 6 }}>(Optional)</span>
+          )}
+        </div>
+      </section>
+      {/* Floating preview-panel FAB toggle for mobile/small screens,
+          show only when preview is hidden */}
+      {(!previewOpen) && (
         <button
+          className="central-preview-fab"
+          aria-label="Show live preview panel"
           style={{
-            marginLeft: 8,
-            opacity: 0.35,
-            background: 'rgba(115,211,190,0.08)',
-            color: 'var(--accent)',
+            display: 'flex',
+            position: 'fixed',
+            right: 12,
+            bottom: 30,
+            zIndex: 110,
+            background: 'linear-gradient(91deg,var(--kavia-accent) 47%, var(--accent) 93%)',
+            boxShadow: '0 2.5px 20px 0 rgba(34,22,55,0.20)',
+            borderRadius: 40,
+            color: '#fff',
+            fontSize: '1.05em',
+            fontWeight: 600,
             border: 'none',
-            borderRadius: 5,
-            fontWeight: 500,
-            fontSize: 14.1,
-            padding: '3px 14px',
-            cursor: 'not-allowed'
+            cursor: 'pointer',
+            alignItems: 'center',
+            padding: '0.7em 1.45em 0.7em 1.2em',
+            outline: 'none',
+            gap: 7,
+            transition: 'background 0.14s, color 0.16s',
+            opacity: 0.97,
+            borderWidth: 2.3,
+            borderStyle: 'solid',
+            borderColor: 'var(--accent)'
           }}
-          title="Pre-fill example content (AI, coming soon)"
-          aria-disabled="true"
-          disabled
-          tabIndex={-1}
+          onClick={onTogglePreviewPanel}
         >
-          <span role="img" aria-label="Prefill">🤖</span> Pre-fill Section
+          {/* Chevron left icon */}
+          <svg width="21" height="21" aria-hidden="true" style={{marginRight: '5px', verticalAlign:'middle'}}>
+            <polyline points="14,5 7,11.5 14,18" stroke="#fff" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          </svg>
+          Show Preview
         </button>
-      </div>
-
-      {/* SECTION FIELDS */}
-      <div style={{ marginTop: 12 }}>
-        {renderSectionFields()}
-      </div>
-
-      {/* Navigation controls */}
-      <div style={{ display: 'flex', flexDirection: 'row', gap: 16, marginTop: 30 }}>
-        <button
-          className="btn"
-          style={{
-            background: 'linear-gradient(91deg, var(--kavia-purple) 87%, var(--kavia-accent) 115%)',
-            minWidth: 90, fontWeight: 600, opacity: stepIndex > 0 ? 1 : 0.6
-          }}
-          onClick={handlePrevious}
-          disabled={stepIndex === 0}
-        >
-          ← Previous
-        </button>
-        <button
-          className="btn btn-large"
-          style={{
-            minWidth: 120,
-            background: 'linear-gradient(93deg,var(--kavia-accent) 77%, var(--kavia-purple) 125%)',
-            fontWeight: 700
-          }}
-          onClick={handleNext}
-          disabled={stepIndex === lastStep}
-        >
-          {stepIndex === lastStep ? 'Done' : 'Next →'}
-        </button>
-      </div>
-      {/* Completion Progress */}
-      <div style={{
-        marginTop: 18,
-        fontSize: 14,
-        color: 'var(--accent)',
-        letterSpacing: '0.015em'
-      }}>
-        Step {stepIndex + 1} of {sections.length}
-        {sections[stepIndex]?.optional && (
-          <span style={{ color: 'var(--text-secondary)', marginLeft: 6 }}>(Optional)</span>
-        )}
-      </div>
-    </section>
+      )}
+    </>
   );
 }
 
