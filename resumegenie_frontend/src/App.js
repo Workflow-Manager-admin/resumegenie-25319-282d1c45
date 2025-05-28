@@ -54,6 +54,9 @@ function App() {
     achievements: [],
   });
 
+  // Panel preview visibility state
+  const [previewOpen, setPreviewOpen] = useState(true);
+
   // Placeholder: Export (PDF/Docx) - currently alerts
   const handleExport = type => {
     // Stub only; will trigger actual export later
@@ -74,6 +77,8 @@ function App() {
         onExport={() => handleExport(previewMode === 'resume' ? 'Resume' : 'Cover Letter')}
         previewMode={previewMode}
         onTogglePreviewMode={() => setPreviewMode(m => (m === 'resume' ? 'cover' : 'resume'))}
+        previewOpen={previewOpen}
+        onTogglePreviewPanel={() => setPreviewOpen(val => !val)}
         // Future props for AI/export/menu controls
       />
       <main
@@ -100,12 +105,16 @@ function App() {
           // Pass formData and updater as CONTROLLED PROPS
           formData={formData}
           setFormData={setFormData}
+          previewOpen={previewOpen}
+          onTogglePreviewPanel={() => setPreviewOpen(val => !val)}
         />
         <RightPreviewPanel
           activeSection={activeSection}
           selectedTemplate={selectedTemplate}
           previewMode={previewMode}
           formData={formData}
+          previewOpen={previewOpen}
+          onTogglePreviewPanel={() => setPreviewOpen(val => !val)}
         />
       </main>
     </div>
