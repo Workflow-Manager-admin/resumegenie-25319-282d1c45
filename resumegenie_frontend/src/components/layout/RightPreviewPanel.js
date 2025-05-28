@@ -3,11 +3,12 @@ import React from 'react';
 /**
  * RightPreviewPanel for live document preview.
  * Contrasted, accessible, and responsive preview area.
+ * Accepts previewMode and selectedTemplate, displays current mode and stubs for future document rendering.
  *
  * PUBLIC_INTERFACE
  */
-function RightPreviewPanel({ activeSection, selectedTemplate }) {
-  // Accept props for live preview (not yet implemented)
+function RightPreviewPanel({ activeSection, selectedTemplate, previewMode }) {
+  // Accept props for live preview - will render real docs in future
   return (
     <aside
       className="right-preview-panel"
@@ -28,7 +29,9 @@ function RightPreviewPanel({ activeSection, selectedTemplate }) {
       aria-label="Live Preview Panel"
       tabIndex={0}
     >
-      <h3 style={{ color: 'var(--kavia-orange)', fontWeight: 500, marginTop: 0 }}>Live Preview</h3>
+      <h3 style={{ color: 'var(--kavia-orange)', fontWeight: 500, marginTop: 0 }}>
+        Live Preview {previewMode === 'cover' ? '— Cover Letter' : '— Resume'}
+      </h3>
       {/* Placeholder for real-time preview */}
       <section
         style={{
@@ -43,10 +46,13 @@ function RightPreviewPanel({ activeSection, selectedTemplate }) {
       >
         {/* Displays info about section/template as stub */}
         <div style={{ fontWeight: 400, color: '#be73d3', fontSize: 16, marginBottom: 4 }}>
-          {selectedTemplate} template &mdash; {activeSection ? `Section: ${activeSection}` : 'No section selected'}
+          {selectedTemplate} template &mdash; {previewMode === 'cover' ? 'Cover Letter' : 'Resume'}<br />
+          {activeSection ? `Section: ${activeSection}` : 'No section selected'}
         </div>
+        {/* TODO: Live rendered resume/cover doc here */}
         Preview will appear here...
       </section>
+      {/* TODO: Insert analytics, download shortcut, or view switcher as needed */}
     </aside>
   );
 }
