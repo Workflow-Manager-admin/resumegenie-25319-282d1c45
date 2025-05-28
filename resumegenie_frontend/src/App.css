@@ -30,15 +30,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: none;
 }
 
-/* ResumeGenie Main Layout Overrides */
 .main-container {
   display: flex;
   flex-direction: row;
   width: 100vw;
   min-height: calc(100vh - 64px);
-  background: var(--kavia-dark);
+  background: var(--primary-bg);
+  box-sizing: border-box;
+  transition: background 0.2s;
 }
 
 .left-nav-panel,
