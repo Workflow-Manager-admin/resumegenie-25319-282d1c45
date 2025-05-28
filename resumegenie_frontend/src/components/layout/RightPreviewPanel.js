@@ -6,7 +6,8 @@ import React from 'react';
  *
  * PUBLIC_INTERFACE
  */
-function RightPreviewPanel() {
+function RightPreviewPanel({ activeSection, selectedTemplate }) {
+  // Accept props for live preview (not yet implemented)
   return (
     <aside
       className="right-preview-panel"
@@ -40,6 +41,10 @@ function RightPreviewPanel() {
         }}
         aria-live="polite"
       >
+        {/* Displays info about section/template as stub */}
+        <div style={{ fontWeight: 400, color: '#be73d3', fontSize: 16, marginBottom: 4 }}>
+          {selectedTemplate} template &mdash; {activeSection ? `Section: ${activeSection}` : 'No section selected'}
+        </div>
         Preview will appear here...
       </section>
     </aside>
