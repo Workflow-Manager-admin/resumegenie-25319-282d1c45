@@ -1,34 +1,32 @@
 import React from 'react';
 import './App.css';
 
+import TopBar from './components/layout/TopBar';
+import LeftNavPanel from './components/layout/LeftNavPanel';
+import CentralFormContainer from './components/layout/CentralFormContainer';
+import RightPreviewPanel from './components/layout/RightPreviewPanel';
+
+/**
+ * ResumeGenie Main Container App
+ * Lays out the app with TopBar, LeftNavPanel, CentralFormContainer, and RightPreviewPanel.
+ */
 function App() {
   return (
-    <div className="app">
-      <nav className="navbar">
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <div className="logo">
-              <span className="logo-symbol">*</span> KAVIA AI
-            </div>
-            <button className="btn">Template Button</button>
-          </div>
-        </div>
-      </nav>
-
-      <main>
-        <div className="container">
-          <div className="hero">
-            <div className="subtitle">AI Workflow Manager Template</div>
-            
-            <h1 className="title">resumegenie_frontend</h1>
-            
-            <div className="description">
-              Start building your application.
-            </div>
-            
-            <button className="btn btn-large">Button</button>
-          </div>
-        </div>
+    <div className="app" tabIndex={-1}>
+      <TopBar />
+      <main
+        className="main-container"
+        style={{
+          display: 'flex',
+          flex: 1,
+          minHeight: '100vh',
+          marginTop: 64, // height of TopBar (for fixed position)
+        }}
+        aria-label="Main content area"
+      >
+        <LeftNavPanel />
+        <CentralFormContainer />
+        <RightPreviewPanel />
       </main>
     </div>
   );
