@@ -68,6 +68,28 @@ body {
   background: linear-gradient(233deg, var(--primary-bg) 83%, var(--accent) 140%);
   border-left: 1.5px solid var(--border-color);
   box-shadow: -3px 0 22px -18px var(--accent);
+  transition: all 0.32s cubic-bezier(.47,.21,.21,.99);
+  /* We'll set transform with a collapsed state below */
+  z-index: 98;
+}
+
+/* Slidable/collapsed preview panel */
+.right-preview-panel.slide-collapsed {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* Central container expands when preview closed */
+.central-form-container.preview-expanded {
+  max-width: 1150px !important;
+  flex: 3 1 950px !important;
+  transition: all 0.22s cubic-bezier(.42,.21,.25,1.01);
 }
 
 @media (max-width: 1050px) {
