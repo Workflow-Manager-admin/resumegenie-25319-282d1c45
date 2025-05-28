@@ -7,9 +7,22 @@ import React from 'react';
  * 
  * PUBLIC_INTERFACE
  */
-function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onTogglePreviewMode }) {
+function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onTogglePreviewMode, previewOpen, onTogglePreviewPanel }) {
   // Available template choices
   const templates = ['Modern', 'Minimalist', 'Traditional'];
+
+  // Icon for preview toggle - simple chevron right/left
+  const previewPanelIcon = previewOpen
+    ? (
+      <svg width="23" height="23" style={{ verticalAlign: 'middle', marginRight: 3 }} aria-hidden="true">
+        <polyline points="8,5 15,11.5 8,18" stroke="#be73d3" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      </svg>
+    )
+    : (
+      <svg width="23" height="23" style={{ verticalAlign: 'middle', marginRight: 2 }} aria-hidden="true">
+        <polyline points="15,5 8,11.5 15,18" stroke="#be73d3" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      </svg>
+    );
 
   return (
     <nav
@@ -35,6 +48,34 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
         </div>
         {/* Controls section */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+          {/* Show/hide preview slider/toggle */}
+          <button
+            className="btn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 0,
+              background: previewOpen
+                ? 'linear-gradient(90deg, var(--secondary-bg) 80%, var(--accent) 118%)'
+                : 'linear-gradient(90deg, var(--accent) 56%, var(--panel-bg) 155%)',
+              color: 'var(--accent)',
+              border: `1.6px solid var(--accent)`,
+              borderRadius: 6,
+              fontWeight: 600,
+              marginRight: 7,
+              padding: '7px 15px 7px 11px',
+              fontSize: 14.3,
+              boxShadow: '0 1px 6px 0 rgba(190,115,211,0.12)',
+              transition: 'all 0.15s'
+            }}
+            aria-label={previewOpen ? "Hide preview panel" : "Show preview panel"}
+            onClick={onTogglePreviewPanel}
+          >
+            {previewPanelIcon}
+            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
+              {previewOpen ? 'Hide' : 'Show'} Preview
+            </span>
+          </button>
           {/* Preview toggle button */}
           <button
             style={{

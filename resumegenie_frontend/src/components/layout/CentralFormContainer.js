@@ -6,7 +6,7 @@ import React, { useState, useMemo } from 'react';
  *
  * PUBLIC_INTERFACE
  */
-function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISuggest, formData, setFormData }) {
+function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISuggest, formData, setFormData, previewOpen, onTogglePreviewPanel }) {
   // Canonical steps (should match main sections for navigation)
   const sections = useMemo(() => [
     { id: 'personal', label: 'Personal Info' },
