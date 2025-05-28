@@ -48,34 +48,6 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
         </div>
         {/* Controls section */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          {/* Show/hide preview slider/toggle */}
-          <button
-            className="btn"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 0,
-              background: previewOpen
-                ? 'linear-gradient(90deg, var(--secondary-bg) 80%, var(--accent) 118%)'
-                : 'linear-gradient(90deg, var(--accent) 56%, var(--panel-bg) 155%)',
-              color: 'var(--accent)',
-              border: `1.6px solid var(--accent)`,
-              borderRadius: 6,
-              fontWeight: 600,
-              marginRight: 7,
-              padding: '7px 15px 7px 11px',
-              fontSize: 14.3,
-              boxShadow: '0 1px 6px 0 rgba(190,115,211,0.12)',
-              transition: 'all 0.15s'
-            }}
-            aria-label={previewOpen ? "Hide preview panel" : "Show preview panel"}
-            onClick={onTogglePreviewPanel}
-          >
-            {previewPanelIcon}
-            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
-              {previewOpen ? 'Hide' : 'Show'} Preview
-            </span>
-          </button>
           {/* Preview toggle button */}
           <button
             style={{
@@ -99,31 +71,61 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
               : <>Cover Letter <span style={{ color: 'var(--accent)', marginLeft: 2 }}>/ Resume</span></>
             }
           </button>
-
-          {/* Template Selector */}
-          <label htmlFor="template-selector" style={{ color: 'var(--text-secondary)', marginRight: 6, fontSize: 14.2 }}>
-            Template:
-          </label>
-          <select
-            id="template-selector"
-            value={selectedTemplate}
-            onChange={e => onTemplateChange && onTemplateChange(e.target.value)}
-            style={{
-              background: 'var(--panel-bg)',
-              border: '1.5px solid var(--accent)',
-              borderRadius: 5,
-              color: 'var(--accent)',
-              fontWeight: 600,
-              fontSize: 15.2,
-              padding: '7px 13px',
-              marginRight: 4
-            }}
-            aria-label="Select Template"
-          >
-            {templates.map(template => (
-              <option key={template} value={template}>{template}</option>
-            ))}
-          </select>
+          {/* Template Selector with toggle immediately after */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <label htmlFor="template-selector" style={{ color: 'var(--text-secondary)', marginRight: 6, fontSize: 14.2 }}>
+              Template:
+            </label>
+            <select
+              id="template-selector"
+              value={selectedTemplate}
+              onChange={e => onTemplateChange && onTemplateChange(e.target.value)}
+              style={{
+                background: 'var(--panel-bg)',
+                border: '1.5px solid var(--accent)',
+                borderRadius: 5,
+                color: 'var(--accent)',
+                fontWeight: 600,
+                fontSize: 15.2,
+                padding: '7px 13px',
+                marginRight: 2
+              }}
+              aria-label="Select Template"
+            >
+              {templates.map(template => (
+                <option key={template} value={template}>{template}</option>
+              ))}
+            </select>
+            {/* Compact Hide/Show Preview toggle button */}
+            <button
+              className="preview-toggle-compact"
+              aria-label={previewOpen ? "Hide preview panel" : "Show preview panel"}
+              onClick={onTogglePreviewPanel}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'none',
+                border: 'none',
+                outline: 'none',
+                padding: '4px 5px',
+                borderRadius: '5px',
+                marginLeft: '1px',
+                marginRight: '8px',
+                minWidth: '1.7em',
+                minHeight: '1.7em',
+                color: 'var(--accent)',
+                transition: 'background 0.12s, box-shadow 0.11s',
+                boxShadow: previewOpen ? '0 1.5px 8px 0 rgba(190,115,211,.10)' : 'none',
+                backgroundColor: previewOpen ? 'rgba(190,115,211,0.09)' : 'rgba(138,138,138,0.06)'
+              }}
+              tabIndex={0}
+              title={previewOpen ? "Hide preview panel" : "Show preview panel"}
+            >
+              {previewPanelIcon}
+              <span className="sr-only">{previewOpen ? 'Hide preview' : 'Show preview'}</span>
+            </button>
+          </div>
 
           {/* Export button (functional stub) */}
           <button
