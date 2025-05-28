@@ -128,7 +128,8 @@ function CentralFormContainer({
     return sectionErrors;
   };
 
-  // Navigation logic
+  // PUBLIC_INTERFACE
+  // Navigation: Move to previous section
   const handlePrevious = () => {
     // Move to previous section if not at first step
     if (stepIndex > 0) {
@@ -140,6 +141,8 @@ function CentralFormContainer({
     }
   };
 
+  // PUBLIC_INTERFACE
+  // Advances to next section with validation, or marks as completed on last step
   const handleNextOrDone = () => {
     // Validate section before advancing
     const section = sections[stepIndex].id;
@@ -629,43 +632,66 @@ function CentralFormContainer({
         </div>
 
         {/* Navigation controls */}
-        <div style={{ display: 'flex', flexDirection: 'row', gap: 16, marginTop: 30 }}>
-          <button
-            className="btn"
-            style={{
-              background: 'linear-gradient(91deg, var(--kavia-purple) 87%, var(--kavia-accent) 115%)',
-              minWidth: 90, fontWeight: 600, opacity: stepIndex > 0 ? 1 : 0.6
-            }}
-            onClick={handlePrevious}
-            disabled={stepIndex === 0}
-          >
-            ← Previous
-          </button>
-          <button
-            className="btn btn-large"
-            style={{
-              minWidth: 120,
-              background: 'linear-gradient(93deg,var(--kavia-accent) 77%, var(--kavia-purple) 125%)',
-              fontWeight: 700
-            }}
-            onClick={handleNext}
-            disabled={stepIndex === lastStep}
-          >
-            {stepIndex === lastStep ? 'Done' : 'Next →'}
-          </button>
-        </div>
-        {/* Completion Progress */}
-        <div style={{
-          marginTop: 18,
-          fontSize: 14,
-          color: 'var(--accent)',
-          letterSpacing: '0.015em'
-        }}>
-          Step {stepIndex + 1} of {sections.length}
-          {sections[stepIndex]?.optional && (
-            <span style={{ color: 'var(--text-secondary)', marginLeft: 6 }}>(Optional)</span>
-          )}
-        </div>
+        {!showSummary && (
+          <div style={{ display: 'flex', flexDirection: 'row', gap: 16, marginTop: 30 }}>
+            <button
+              className="btn"
+              style={{
+                background: 'linear-gradient(91deg, var(--kavia-purple) 87%, var(--kavia-accent) 115%)',
+                minWidth: 90, fontWeight: 600, opacity: stepIndex > 0 ? 1 : 0.6
+              }}
+              onClick={handlePrevious}
+              disabled={stepIndex === 0}
+            >
+              ← Previous
+            </button>
+            <button
+              className="btn btn-large"
+              style={{
+                minWidth: 120,
+                background: 'linear-gradient(93deg,var(--kavia-accent) 77%, var(--kavia-purple) 125%)',
+                fontWeight: 700
+              }}
+              onClick={handleNextOrDone}
+            >
+              {stepIndex === lastStep ? 'Done' : 'Next →'}
+            </button>
+          </div>
+        )}
+        {/* Completion Progress or Summary */}
+        {!showSummary ? (
+          <div style={{
+            marginTop: 18,
+            fontSize: 14,
+            color: 'var(--accent)',
+            letterSpacing: '0.015em'
+          }}>
+            Step {stepIndex + 1} of {sections.length}
+            {sections[stepIndex]?.optional && (
+              <span style={{ color: 'var(--text-secondary)', marginLeft: 6 }}>(Optional)</span>
+            )}
+          </div>
+        ) : (
+          <div style={{
+            marginTop: 30,
+            marginBottom: 22,
+            color: 'var(--kavia-accent)',
+            background: 'rgba(190,115,211,0.15)',
+            borderRadius: 8,
+            padding: '2.2em 1.1em'
+          }}>
+            <h3 style={{ color: 'var(--accent)', fontWeight: 700, marginBottom: 8 }}>
+              🎉 All sections completed!
+            </h3>
+            <div style={{ color: 'var(--text-secondary)', marginBottom: 13 }}>
+              You have filled all form sections. Review your info in the preview panel. <br />
+              To make edits, select any section from the left navigation.
+            </div>
+            <div style={{ color: 'var(--accent)', fontSize: 15 }}>
+              <span style={{ fontWeight: 600 }}>Tip:</span> Use the Export button in the top bar to download or print your resume.
+            </div>
+          </div>
+        )}
       </section>
       {/* Floating preview-panel FAB toggle for mobile/small screens,
           show only when preview is hidden */}
