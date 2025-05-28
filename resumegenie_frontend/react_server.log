@@ -2,9 +2,9 @@
 > react-kavia@0.1.0 start
 > react-scripts start
 
-(node:566) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:1190) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:566) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:1190) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled successfully!
@@ -17,131 +17,6 @@ You can now view react-kavia in the browser.
 Note that the development build is not optimized.
 To create a production build, use npm run build.
 
-webpack compiled successfully
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/TopBar' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 6:0-48
-Module not found: Error: Can't resolve './components/layout/TopBar' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 7:0-60
-Module not found: Error: Can't resolve './components/layout/LeftNavPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 8:0-76
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 4 errors
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/LeftNavPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 7:0-60
-Module not found: Error: Can't resolve './components/layout/LeftNavPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 8:0-76
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 3 errors
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/LeftNavPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 7:0-60
-Module not found: Error: Can't resolve './components/layout/LeftNavPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 8:0-76
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 3 errors
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/LeftNavPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 7:0-60
-Module not found: Error: Can't resolve './components/layout/LeftNavPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 8:0-76
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 3 errors
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 8:0-76
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 2 errors
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 8:0-76
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 2 errors
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 8:0-76
-Module not found: Error: Can't resolve './components/layout/CentralFormContainer' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 2 errors
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 1 error
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 1 error
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-ERROR in ./src/App.js 9:0-70
-Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
-
-webpack compiled with 1 error
-Compiling...
-Compiled successfully!
-webpack compiled successfully
-Compiling...
-Compiled successfully!
-webpack compiled successfully
-Compiling...
-Compiled successfully!
 webpack compiled successfully
 Compiling...
 Compiled successfully!
