@@ -128,28 +128,51 @@ function CentralFormContainer({
     return sectionErrors;
   };
 
-  // Navigation
+  // Navigation logic
   const handlePrevious = () => {
-    if (stepIndex > 0)
-      window.dispatchEvent(new CustomEvent('navSection', { detail: sections[stepIndex - 1].id }));
-  };
-
-  const handleNext = () => {
-    // Validate current section before moving on
-    const section = sections[stepIndex].id;
-    const validation = validateSection(section);
-    // If main sections and error exist, block advancement
-    let hasError = false;
-    if (section === 'personal') hasError = Object.keys(validation).length > 0;
-    if (section === 'education' || section === 'experience')
-      hasError = validation.some(obj => Object.keys(obj).length > 0);
-    if (section === 'skills') hasError = validation._self;
-
-    setErrors(prev => ({ ...prev, [section]: validation }));
-    if (!hasError && stepIndex < lastStep) {
-      window.dispatchEvent(new CustomEvent('navSection', { detail: sections[stepIndex + 1].id }));
+    // Move to previous section if not at first step
+    if (stepIndex > 0) {
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(
+          new CustomEvent("navSection", { detail: sections[stepIndex - 1].id })
+        );
+      }
     }
   };
+
+  const handleNextOrDone = () => {
+    // Validate section before advancing
+    const section = sections[stepIndex].id;
+    const validation = validateSection(section);
+
+    // Determine if errors present for blocking sections
+    let hasError = false;
+    if (section === "personal") hasError = Object.keys(validation).length > 0;
+    if (section === "education" || section === "experience")
+      hasError = Array.isArray(validation) && validation.some(obj => Object.keys(obj).length > 0);
+    if (section === "skills") hasError = !!validation._self;
+
+    setErrors(prev => ({ ...prev, [section]: validation }));
+
+    // Step advancement or completion (block on error unless optional)
+    if (!hasError) {
+      if (stepIndex < lastStep) {
+        // Next step
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(
+            new CustomEvent("navSection", { detail: sections[stepIndex + 1].id })
+          );
+        }
+      } else {
+        // If last step, mark as complete/done (show summary, disable, etc.)
+        setShowSummary(true);
+        // Optionally fire a completion handler, if needed (e.g., prop.onComplete)
+      }
+    }
+  };
+
+  // Add summary state for completion experience (setShowSummary state)
+  const [showSummary, setShowSummary] = useState(false);
 
   // Listen to nav changes (simulate parent sectionId change for step nav)
   React.useEffect(() => {
