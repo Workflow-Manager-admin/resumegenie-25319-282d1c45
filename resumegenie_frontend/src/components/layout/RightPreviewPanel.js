@@ -1,11 +1,13 @@
 import React from 'react';
 
 /**
- * Styled resume section components for live preview templates
+ * PUBLIC_INTERFACE
+ * RightPreviewPanel: Live preview panel supporting Modern, Minimalist, and Traditional resume templates.
+ * Instantly updates the displayed template when selectedTemplate prop changes.
  */
 
+// Modern Template
 function ModernTemplate({ data, previewMode }) {
-  // Modern: colored accent left bar, bold name, 2-col layout, flat cards, color highlights.
   const { personal, education, experience, projects, skills, certifications, achievements } = data;
   return (
     <div className="resume-modern">
@@ -14,9 +16,11 @@ function ModernTemplate({ data, previewMode }) {
         <div>
           <div className="rm-name">{personal.fullName || 'Full Name'}</div>
           <div className="rm-contact">
-            {(personal.email && <span>{personal.email}</span>)}{personal.email && personal.phone && ' | '}
-            {(personal.phone && <span>{personal.phone}</span>)}{(personal.email || personal.phone) && personal.address && ' | '}
-            {(personal.address && <span>{personal.address}</span>)}
+            {personal.email && <span>{personal.email}</span>}
+            {personal.email && personal.phone && ' | '}
+            {personal.phone && <span>{personal.phone}</span>}
+            {(personal.email || personal.phone) && personal.address && ' | '}
+            {personal.address && <span>{personal.address}</span>}
           </div>
         </div>
       </div>
@@ -27,79 +31,100 @@ function ModernTemplate({ data, previewMode }) {
         </section>
       ) : (
         <>
-        <section className="rm-section">
-          <h2>Education</h2>
-          {(education || []).map((ed, i) => (
-            (ed.degree || ed.school) && <div className="rm-entry" key={i}>
-              <span className="rm-ed-title">{ed.degree || 'Degree'} at {ed.school || 'School'}</span>
-              <span className="rm-ed-dates">{ed.startDate} - {ed.endDate}</span>
-              <div className="rm-ed-desc">{ed.description}</div>
-            </div>
-          ))}
-        </section>
-        <section className="rm-section">
-          <h2>Experience</h2>
-          {(experience || []).map((ex, i) => (
-            (ex.jobTitle || ex.employer) && <div className="rm-entry" key={i}>
-              <span className="rm-exp-title">{ex.jobTitle || 'Job Title'} at {ex.employer || 'Employer'}</span>
-              <span className="rm-exp-dates">{ex.startDate} - {ex.endDate}</span>
-              <div className="rm-exp-desc">{ex.description}</div>
-            </div>
-          ))}
-        </section>
-        {!!(projects && projects.length) && (
           <section className="rm-section">
-            <h2>Projects</h2>
-            {projects.map((pr, i) => (
-              pr.title && <div className="rm-entry" key={i}>
-                <span className="rm-pr-title">{pr.title}</span>
-                {pr.link && <span className="rm-pr-link"><a href={pr.link} rel="noopener noreferrer" target="_blank">{pr.link}</a></span>}
-                <div className="rm-pr-desc">{pr.details}</div>
-              </div>
-            ))}
+            <h2>Education</h2>
+            {(education || []).map((ed, i) =>
+              (ed.degree || ed.school) && (
+                <div className="rm-entry" key={i}>
+                  <span className="rm-ed-title">{ed.degree || 'Degree'} at {ed.school || 'School'}</span>
+                  <span className="rm-ed-dates">{ed.startDate} - {ed.endDate}</span>
+                  <div className="rm-ed-desc">{ed.description}</div>
+                </div>
+              )
+            )}
           </section>
-        )}
-        {!!(skills && skills.length) && (
           <section className="rm-section">
-            <h2>Skills</h2>
-            <div className="rm-skill-list">{skills.join(', ')}</div>
+            <h2>Experience</h2>
+            {(experience || []).map((ex, i) =>
+              (ex.jobTitle || ex.employer) && (
+                <div className="rm-entry" key={i}>
+                  <span className="rm-exp-title">{ex.jobTitle || 'Job Title'} at {ex.employer || 'Employer'}</span>
+                  <span className="rm-exp-dates">{ex.startDate} - {ex.endDate}</span>
+                  <div className="rm-exp-desc">{ex.description}</div>
+                </div>
+              )
+            )}
           </section>
-        )}
-        {!!(certifications && certifications.length) && (
-          <section className="rm-section">
-            <h2>Certifications</h2>
-            {certifications.map((c, i) => (
-              c.name && <div className="rm-entry" key={i}>
-                <span>{c.name}, {c.issuer} {c.date && <>({c.date})</>}</span>
-              </div>
-            ))}
-          </section>
-        )}
-        {!!(achievements && achievements.length) && (
-          <section className="rm-section">
-            <h2>Achievements</h2>
-            {achievements.map((a, i) => a.title && <div className="rm-entry" key={i}>{a.title}: <span style={{opacity:0.92}}>{a.description}</span></div>)}
-          </section>
-        )}
+          {!!(projects && projects.length) && (
+            <section className="rm-section">
+              <h2>Projects</h2>
+              {projects.map((pr, i) =>
+                pr.title && (
+                  <div className="rm-entry" key={i}>
+                    <span className="rm-pr-title">{pr.title}</span>
+                    {pr.link && (
+                      <span className="rm-pr-link">
+                        <a href={pr.link} rel="noopener noreferrer" target="_blank">{pr.link}</a>
+                      </span>
+                    )}
+                    <div className="rm-pr-desc">{pr.details}</div>
+                  </div>
+                )
+              )}
+            </section>
+          )}
+          {!!(skills && skills.length) && (
+            <section className="rm-section">
+              <h2>Skills</h2>
+              <div className="rm-skill-list">{skills.join(', ')}</div>
+            </section>
+          )}
+          {!!(certifications && certifications.length) && (
+            <section className="rm-section">
+              <h2>Certifications</h2>
+              {certifications.map((c, i) =>
+                c.name && (
+                  <div className="rm-entry" key={i}>
+                    <span>{c.name}, {c.issuer} {c.date && <>({c.date})</>}</span>
+                  </div>
+                )
+              )}
+            </section>
+          )}
+          {!!(achievements && achievements.length) && (
+            <section className="rm-section">
+              <h2>Achievements</h2>
+              {achievements.map((a, i) =>
+                a.title && (
+                  <div className="rm-entry" key={i}>
+                    {a.title}: <span style={{ opacity: 0.92 }}>{a.description}</span>
+                  </div>
+                )
+              )}
+            </section>
+          )}
         </>
       )}
     </div>
   );
 }
+
+// Minimalist Template
 function MinimalistTemplate({ data, previewMode }) {
-  // Minimalist: lots of whitespace, single accent color, simple underlines, left-aligned.
   const { personal, education, experience, projects, skills, certifications, achievements } = data;
   return (
     <div className="resume-minimalist">
       <div className="min-header">
         <div className="min-name">{personal.fullName || 'Full Name'}</div>
         <div className="min-contact">
-          {(personal.email && <span>{personal.email}</span>)}{personal.email && personal.phone && ' | '}
-          {(personal.phone && <span>{personal.phone}</span>)}{(personal.email || personal.phone) && personal.address && ' | '}
-          {(personal.address && <span>{personal.address}</span>)}
+          {personal.email && <span>{personal.email}</span>}
+          {personal.email && personal.phone && ' | '}
+          {personal.phone && <span>{personal.phone}</span>}
+          {(personal.email || personal.phone) && personal.address && ' | '}
+          {personal.address && <span>{personal.address}</span>}
         </div>
       </div>
-      <hr className="min-hr"/>
+      <hr className="min-hr" />
       {previewMode === 'cover' ? (
         <section className="min-section">
           <h2>Cover Letter</h2>
@@ -107,79 +132,104 @@ function MinimalistTemplate({ data, previewMode }) {
         </section>
       ) : (
         <>
-        <section className="min-section">
-          <h2>Education</h2>
-          {(education || []).map((ed, i) => (
-            (ed.degree || ed.school) && <div className="min-entry" key={i}>
-              <div><b>{ed.degree || 'Degree'}</b> at {ed.school || 'School'}</div>
-              <div className="min-dates">{ed.startDate} - {ed.endDate}</div>
-              <div className="min-desc">{ed.description}</div>
-            </div>
-          ))}
-        </section>
-        <section className="min-section">
-          <h2>Experience</h2>
-          {(experience || []).map((ex, i) => (
-            (ex.jobTitle || ex.employer) && <div className="min-entry" key={i}>
-              <div><b>{ex.jobTitle || 'Job Title'}</b> at {ex.employer || 'Employer'}</div>
-              <div className="min-dates">{ex.startDate} - {ex.endDate}</div>
-              <div className="min-desc">{ex.description}</div>
-            </div>
-          ))}
-        </section>
-        {!!(projects && projects.length) && (
           <section className="min-section">
-            <h2>Projects</h2>
-            {projects.map((pr, i) => (
-              pr.title && <div className="min-entry" key={i}>
-                <span className="min-pr-title">{pr.title}</span>
-                {pr.link && <span className="min-pr-link"><a href={pr.link} rel="noopener noreferrer" target="_blank">{pr.link}</a></span>}
-                <div className="min-pr-desc">{pr.details}</div>
-              </div>
-            ))}
+            <h2>Education</h2>
+            {(education || []).map((ed, i) =>
+              (ed.degree || ed.school) && (
+                <div className="min-entry" key={i}>
+                  <div>
+                    <b>{ed.degree || 'Degree'}</b> at {ed.school || 'School'}
+                  </div>
+                  <div className="min-dates">{ed.startDate} - {ed.endDate}</div>
+                  <div className="min-desc">{ed.description}</div>
+                </div>
+              )
+            )}
           </section>
-        )}
-        {!!(skills && skills.length) && (
           <section className="min-section">
-            <h2>Skills</h2>
-            <div className="min-skill-list">{skills.join(', ')}</div>
+            <h2>Experience</h2>
+            {(experience || []).map((ex, i) =>
+              (ex.jobTitle || ex.employer) && (
+                <div className="min-entry" key={i}>
+                  <div>
+                    <b>{ex.jobTitle || 'Job Title'}</b> at {ex.employer || 'Employer'}
+                  </div>
+                  <div className="min-dates">{ex.startDate} - {ex.endDate}</div>
+                  <div className="min-desc">{ex.description}</div>
+                </div>
+              )
+            )}
           </section>
-        )}
-        {!!(certifications && certifications.length) && (
-          <section className="min-section">
-            <h2>Certifications</h2>
-            {certifications.map((c, i) => (
-              c.name && <div className="min-entry" key={i}>
-                <span>{c.name}, {c.issuer} {c.date && <>({c.date})</>}</span>
-              </div>
-            ))}
-          </section>
-        )}
-        {!!(achievements && achievements.length) && (
-          <section className="min-section">
-            <h2>Achievements</h2>
-            {achievements.map((a, i) => a.title && <div className="min-entry" key={i}>{a.title}: <span>{a.description}</span></div>)}
-          </section>
-        )}
+          {!!(projects && projects.length) && (
+            <section className="min-section">
+              <h2>Projects</h2>
+              {projects.map((pr, i) =>
+                pr.title && (
+                  <div className="min-entry" key={i}>
+                    <span className="min-pr-title">{pr.title}</span>
+                    {pr.link && (
+                      <span className="min-pr-link">
+                        <a href={pr.link} rel="noopener noreferrer" target="_blank">{pr.link}</a>
+                      </span>
+                    )}
+                    <div className="min-pr-desc">{pr.details}</div>
+                  </div>
+                )
+              )}
+            </section>
+          )}
+          {!!(skills && skills.length) && (
+            <section className="min-section">
+              <h2>Skills</h2>
+              <div className="min-skill-list">{skills.join(', ')}</div>
+            </section>
+          )}
+          {!!(certifications && certifications.length) && (
+            <section className="min-section">
+              <h2>Certifications</h2>
+              {certifications.map((c, i) =>
+                c.name && (
+                  <div className="min-entry" key={i}>
+                    <span>{c.name}, {c.issuer} {c.date && <>({c.date})</>}</span>
+                  </div>
+                )
+              )}
+            </section>
+          )}
+          {!!(achievements && achievements.length) && (
+            <section className="min-section">
+              <h2>Achievements</h2>
+              {achievements.map((a, i) =>
+                a.title && (
+                  <div className="min-entry" key={i}>
+                    {a.title}: <span>{a.description}</span>
+                  </div>
+                )
+              )}
+            </section>
+          )}
         </>
       )}
     </div>
   );
 }
+
+// Traditional Template
 function TraditionalTemplate({ data, previewMode }) {
-  // Traditional: serif font, strong section headers, bordered boxes, black-and-white, justified.
   const { personal, education, experience, projects, skills, certifications, achievements } = data;
   return (
     <div className="resume-traditional">
       <div className="trad-header">
         <div className="trad-name">{personal.fullName || 'Full Name'}</div>
         <div className="trad-contact">
-          {(personal.email && <span>{personal.email}</span>)}{personal.email && personal.phone && ' | '}
-          {(personal.phone && <span>{personal.phone}</span>)}{(personal.email || personal.phone) && personal.address && ' | '}
-          {(personal.address && <span>{personal.address}</span>)}
+          {personal.email && <span>{personal.email}</span>}
+          {personal.email && personal.phone && ' | '}
+          {personal.phone && <span>{personal.phone}</span>}
+          {(personal.email || personal.phone) && personal.address && ' | '}
+          {personal.address && <span>{personal.address}</span>}
         </div>
       </div>
-      <div className="trad-hr"/>
+      <div className="trad-hr" />
       {previewMode === 'cover' ? (
         <section className="trad-section">
           <div className="trad-section-title">Cover Letter</div>
@@ -187,136 +237,169 @@ function TraditionalTemplate({ data, previewMode }) {
         </section>
       ) : (
         <>
-        <section className="trad-section">
-          <div className="trad-section-title">Education</div>
-          {(education || []).map((ed, i) => (
-            (ed.degree || ed.school) && <div className="trad-entry" key={i}>
-              <b>{ed.degree || 'Degree'}</b> at {ed.school || 'School'}
-              <span className="trad-dates">{ed.startDate} - {ed.endDate}</span>
-              {!!ed.description && <div className="trad-desc">{ed.description}</div>}
-            </div>
-          ))}
-        </section>
-        <section className="trad-section">
-          <div className="trad-section-title">Experience</div>
-          {(experience || []).map((ex, i) => (
-            (ex.jobTitle || ex.employer) && <div className="trad-entry" key={i}>
-              <b>{ex.jobTitle || 'Job Title'}</b> at {ex.employer || 'Employer'}
-              <span className="trad-dates">{ex.startDate} - {ex.endDate}</span>
-              {!!ex.description && <div className="trad-desc">{ex.description}</div>}
-            </div>
-          ))}
-        </section>
-        {!!(projects && projects.length) && (
           <section className="trad-section">
-            <div className="trad-section-title">Projects</div>
-            {projects.map((pr, i) => (
-              pr.title && <div className="trad-entry" key={i}>
-                <span className="trad-pr-title">{pr.title}</span>
-                {pr.link && <span className="trad-pr-link"><a href={pr.link} rel="noopener noreferrer" target="_blank">{pr.link}</a></span>}
-                <div className="trad-pr-desc">{pr.details}</div>
-              </div>
-            ))}
+            <div className="trad-section-title">Education</div>
+            {(education || []).map((ed, i) =>
+              (ed.degree || ed.school) && (
+                <div className="trad-entry" key={i}>
+                  <b>{ed.degree || 'Degree'}</b> at {ed.school || 'School'}
+                  <span className="trad-dates">{ed.startDate} - {ed.endDate}</span>
+                  {!!ed.description && <div className="trad-desc">{ed.description}</div>}
+                </div>
+              )
+            )}
           </section>
-        )}
-        {!!(skills && skills.length) && (
-          <section className="trad-section"><div className="trad-section-title">Skills</div>
-            <div className="trad-skill-list">{skills.join(', ')}</div>
+          <section className="trad-section">
+            <div className="trad-section-title">Experience</div>
+            {(experience || []).map((ex, i) =>
+              (ex.jobTitle || ex.employer) && (
+                <div className="trad-entry" key={i}>
+                  <b>{ex.jobTitle || 'Job Title'}</b> at {ex.employer || 'Employer'}
+                  <span className="trad-dates">{ex.startDate} - {ex.endDate}</span>
+                  {!!ex.description && <div className="trad-desc">{ex.description}</div>}
+                </div>
+              )
+            )}
           </section>
-        )}
-        {!!(certifications && certifications.length) && (
-          <section className="trad-section"><div className="trad-section-title">Certifications</div>
-            {certifications.map((c, i) => (
-              c.name && <div className="trad-entry" key={i}>
-                <span>{c.name}, {c.issuer} {c.date && <>({c.date})</>}</span>
-              </div>
-            ))}
-          </section>
-        )}
-        {!!(achievements && achievements.length) && (
-          <section className="trad-section"><div className="trad-section-title">Achievements</div>
-            {achievements.map((a, i) => a.title && <div className="trad-entry" key={i}>{a.title}: <span>{a.description}</span></div>)}
-          </section>
-        )}
+          {!!(projects && projects.length) && (
+            <section className="trad-section">
+              <div className="trad-section-title">Projects</div>
+              {projects.map((pr, i) =>
+                pr.title && (
+                  <div className="trad-entry" key={i}>
+                    <span className="trad-pr-title">{pr.title}</span>
+                    {pr.link && (
+                      <span className="trad-pr-link">
+                        <a href={pr.link} rel="noopener noreferrer" target="_blank">{pr.link}</a>
+                      </span>
+                    )}
+                    <div className="trad-pr-desc">{pr.details}</div>
+                  </div>
+                )
+              )}
+            </section>
+          )}
+          {!!(skills && skills.length) && (
+            <section className="trad-section">
+              <div className="trad-section-title">Skills</div>
+              <div className="trad-skill-list">{skills.join(', ')}</div>
+            </section>
+          )}
+          {!!(certifications && certifications.length) && (
+            <section className="trad-section">
+              <div className="trad-section-title">Certifications</div>
+              {certifications.map((c, i) =>
+                c.name && (
+                  <div className="trad-entry" key={i}>
+                    <span>{c.name}, {c.issuer} {c.date && <>({c.date})</>}</span>
+                  </div>
+                )
+              )}
+            </section>
+          )}
+          {!!(achievements && achievements.length) && (
+            <section className="trad-section">
+              <div className="trad-section-title">Achievements</div>
+              {achievements.map((a, i) =>
+                a.title && (
+                  <div className="trad-entry" key={i}>
+                    {a.title}: <span>{a.description}</span>
+                  </div>
+                )
+              )}
+            </section>
+          )}
         </>
       )}
     </div>
   );
 }
 
+// PUBLIC_INTERFACE: RightPreviewPanel for live document preview
+function RightPreviewPanel({
+  activeSection,
+  selectedTemplate,
+  previewMode,
+  formData,
+  previewOpen,
+  onTogglePreviewPanel,
+}) {
+  const panelClass = previewOpen
+    ? "right-preview-panel"
+    : "right-preview-panel slide-collapsed";
 
-/**
- * PUBLIC_INTERFACE: RightPreviewPanel for live document preview with multiple visual templates.
- */
-function RightPreviewPanel({ activeSection, selectedTemplate, previewMode, formData, previewOpen, onTogglePreviewPanel }) {
-  const panelClass = previewOpen ? "right-preview-panel" : "right-preview-panel slide-collapsed";
-
-  // Template switcher logic
+  // Choose preview template dynamically
   let RenderComponent;
-  if (selectedTemplate === 'Minimalist') RenderComponent = MinimalistTemplate;
-  else if (selectedTemplate === 'Traditional') RenderComponent = TraditionalTemplate;
+  if (selectedTemplate === "Minimalist") RenderComponent = MinimalistTemplate;
+  else if (selectedTemplate === "Traditional") RenderComponent = TraditionalTemplate;
   else RenderComponent = ModernTemplate;
 
   return (
-    <aside
-      className={panelClass}
-      aria-label="Live Preview Panel"
-      tabIndex={0}
-    >
-      {/* Show collapsed/reopen button (desktop) */}
+    <aside className={panelClass} aria-label="Live Preview Panel" tabIndex={0}>
+      {/* Collapsed/reopen button for desktop view */}
       {!previewOpen && (
         <button
           aria-label="Open preview panel"
           onClick={() => onTogglePreviewPanel && onTogglePreviewPanel()}
           style={{
-            position: 'fixed',
+            position: "fixed",
             right: 0,
-            top: '45%',
+            top: "45%",
             zIndex: 130,
-            background: 'var(--accent)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '16px 0 0 16px',
+            background: "var(--accent)",
+            color: "#fff",
+            border: "none",
+            borderRadius: "16px 0 0 16px",
             minWidth: 30,
-            padding: '13px 7px 15px 2px',
+            padding: "13px 7px 15px 2px",
             fontWeight: 700,
-            boxShadow: '0 1.5px 10px 0 rgba(190,115,211,0.21)',
-            display: 'block',
+            boxShadow: "0 1.5px 10px 0 rgba(190,115,211,0.21)",
+            display: "block",
           }}
           className="right-preview-reopen"
         >
           <svg width="18" height="28" aria-hidden="true">
-            <polyline points="3,5 13,14 3,23" stroke="#fff" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+            <polyline
+              points="3,5 13,14 3,23"
+              stroke="#fff"
+              strokeWidth="2.5"
+              fill="none"
+              strokeLinecap="round"
+            />
           </svg>
         </button>
       )}
-      {/* Only render content if panel is open */}
+      {/* Main preview render */}
       {previewOpen && (
-        <div style={{
-          background: 'linear-gradient(104deg,rgba(34,20,50,0.92) 80%, var(--accent) 180%)',
-          borderRadius: 11,
-          padding: '1.2em 1.6em 2.5em 1.6em',
-          color: 'var(--text-color)',
-          minHeight: 350,
-          marginTop: '1rem',
-          boxShadow: '0 2px 14px 0 rgba(34,20,50,0.13)',
-          position: 'relative',
-          overflowY: 'auto',
-          maxHeight: 'calc(100vh - 110px)'
-        }}>
-          <div style={{ position: 'sticky', top: 0, zIndex: 9, background: "transparent" }}>
-            <div style={{
-              color: 'var(--accent)',
-              fontWeight: 600,
-              letterSpacing: '0.01em',
-              fontSize: 21,
-              marginTop: 0,
-              marginBottom: 12
-            }}>
-              Live Preview {previewMode === 'cover' ? '— Cover Letter' : '— Resume'}
+        <div
+          style={{
+            background:
+              "linear-gradient(104deg,rgba(34,20,50,0.92) 80%, var(--accent) 180%)",
+            borderRadius: 11,
+            padding: "1.2em 1.6em 2.5em 1.6em",
+            color: "var(--text-color)",
+            minHeight: 350,
+            marginTop: "1rem",
+            boxShadow: "0 2px 14px 0 rgba(34,20,50,0.13)",
+            position: "relative",
+            overflowY: "auto",
+            maxHeight: "calc(100vh - 110px)",
+          }}
+        >
+          <div style={{ position: "sticky", top: 0, zIndex: 9, background: "transparent" }}>
+            <div
+              style={{
+                color: "var(--accent)",
+                fontWeight: 600,
+                letterSpacing: "0.01em",
+                fontSize: 21,
+                marginTop: 0,
+                marginBottom: 12,
+              }}
+            >
+              Live Preview {previewMode === "cover" ? "— Cover Letter" : "— Resume"}
             </div>
           </div>
-          {/* Main resume template preview */}
           <RenderComponent data={formData} previewMode={previewMode} />
         </div>
       )}
@@ -327,10 +410,8 @@ function RightPreviewPanel({ activeSection, selectedTemplate, previewMode, formD
 export default RightPreviewPanel;
 
 /*
- * === Add Template Styles (can be moved to its own CSS file if needed for isolation). ===
- * Styles are injected here for simplicity.
+ * Template Preview Styles (auto-injected for isolation)
  */
-
 const previewPanelStyles = `
 /* Modern Template Styles */
 .resume-modern {
@@ -369,6 +450,7 @@ const previewPanelStyles = `
 .rm-pr-link a { color: var(--kavia-orange);}
 .rm-skill-list { color: #fee4a6; font-weight: 500; font-size: 1.03em; }
 @media (max-width:600px){.resume-modern{padding:0.7em 0.2em 1em 0.1em;}}
+
 /* Minimalist Template Styles */
 .resume-minimalist {
   font-family: 'Roboto','Arial',sans-serif; background: #241f38; color: #fcfcfc;
@@ -385,6 +467,7 @@ const previewPanelStyles = `
 .min-skill-list { font-weight: 500; color: #dfffd6;}
 .min-hr { border: none; border-bottom: 2.5px solid var(--border-color); margin-bottom: 8px; margin-top: 0;}
 @media (max-width:600px){.resume-minimalist{padding:0.9em 0.2em 1em 0.2em;}}
+
 /* Traditional Template Styles */
 .resume-traditional {
   font-family: 'Georgia','Times New Roman',serif; background: #fffef9; color: #202032;
@@ -404,7 +487,6 @@ const previewPanelStyles = `
 .trad-skill-list { font-weight: 500; color: #384b38;}
 @media (max-width:600px){.resume-traditional{padding:0.7em 0.2em 1em 0.2em;}}
 `;
-// Only inject styles once per page
 if (typeof window !== "undefined" && !window._resumePreviewPanelStyles) {
   const st = document.createElement("style");
   st.innerHTML = previewPanelStyles;
