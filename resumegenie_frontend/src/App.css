@@ -312,6 +312,47 @@ select:focus, input:focus {
   outline: 2px solid var(--accent);
 }
 
+/* --- Compact preview toggle button styles for TopBar --- */
+.preview-toggle-compact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.7em;
+  min-height: 1.7em;
+  padding: 4px 5px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--kavia-accent);
+  transition: background 0.11s, box-shadow 0.11s, color 0.13s;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0.9px 6px 0 rgba(190,115,211,0.07);
+  margin-left: 1px;
+}
+.preview-toggle-compact svg {
+  display: block;
+  margin: 0;
+  /* inherit color for SVG stroke for accessibility */
+}
+.preview-toggle-compact:focus-visible, .preview-toggle-compact:hover {
+  background: linear-gradient(91deg, var(--accent) 36%, var(--secondary-bg) 97%);
+  color: #fff;
+  box-shadow: 0 2px 13px 0 rgba(190,115,211,0.16);
+}
+.preview-toggle-compact[aria-label="Hide preview panel"]:not(:hover):not(:focus-visible),
+.preview-toggle-compact[aria-label="Show preview panel"]:not(:hover):not(:focus-visible) {
+  background: rgba(190,115,211,0.12); /* subtle bg for high contrast */
+}
+.preview-toggle-compact .sr-only {
+  /* Assistive text hidden visually but accessible for screen readers */
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 @media (max-width: 600px) {
   select,
   input[type="text"], input[type="email"], input[type="password"] {
