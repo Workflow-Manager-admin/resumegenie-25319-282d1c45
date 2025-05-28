@@ -11,11 +11,12 @@ import RightPreviewPanel from './components/layout/RightPreviewPanel';
  * Lays out the app with TopBar, LeftNavPanel, CentralFormContainer, and RightPreviewPanel.
  *
  * Manages main app navigation section state and passes handlers to nav and form containers.
- *
+ * Adds preview mode toggle (Resume vs Cover Letter), disabled stubs for AI/export.
+ * 
  * PUBLIC_INTERFACE
  */
 function App() {
-  // Define canonical section IDs for navigation/app steps
+  // Canonical section IDs for navigation/app steps
   const sections = [
     { id: 'personal', label: 'Personal Info' },
     { id: 'education', label: 'Education' },
@@ -26,22 +27,34 @@ function App() {
   // Maintain active section as state
   const [activeSection, setActiveSection] = useState(sections[0].id);
 
-  // Optionally: pass template & export handlers to TopBar
+  // Selected template for preview/export
   const [selectedTemplate, setSelectedTemplate] = useState('Modern');
 
-  // Placeholder for TopBar export option (no-op for now)
-  const handleExport = () => {
-    // Placeholder action for export
-    alert('Export function is not yet implemented.');
+  // Preview mode: 'resume' or 'cover'
+  const [previewMode, setPreviewMode] = useState('resume');
+  // TODO: In future, sync this state with a Cover Letter section in the LeftNav.
+
+  // Placeholder: Export (PDF/Docx) - currently alerts
+  const handleExport = type => {
+    // Stub only; will trigger actual export later
+    alert(`Export (${type}) function is not yet implemented.`);
   };
 
-  // Central container stub props: Which section to show
+  // Placeholder: AI content enhancement (future)
+  const handleAISuggest = () => {
+    alert('AI-powered suggestions will be available soon.');
+  };
+
+  // Optionally pass more feature flags for future toggling
   return (
     <div className="app" tabIndex={-1}>
       <TopBar
         selectedTemplate={selectedTemplate}
         onTemplateChange={setSelectedTemplate}
-        onExport={handleExport}
+        onExport={() => handleExport(previewMode === 'resume' ? 'Resume' : 'Cover Letter')}
+        previewMode={previewMode}
+        onTogglePreviewMode={() => setPreviewMode(m => (m === 'resume' ? 'cover' : 'resume'))}
+        // Future props for AI/export/menu controls
       />
       <main
         className="main-container"
@@ -49,7 +62,7 @@ function App() {
           display: 'flex',
           flex: 1,
           minHeight: '100vh',
-          marginTop: 64, // height of TopBar (for fixed position)
+          marginTop: 64 // height of TopBar (fixed)
         }}
         aria-label="Main content area"
       >
@@ -57,12 +70,19 @@ function App() {
           sections={sections}
           activeSection={activeSection}
           onSectionChange={setActiveSection}
+          // Future: Props for analytics, section-completion etc
         />
         <CentralFormContainer
           sectionId={activeSection}
           sectionLabel={sections.find(s => s.id === activeSection)?.label || ''}
+          previewMode={previewMode}
+          onAISuggest={handleAISuggest}
         />
-        <RightPreviewPanel activeSection={activeSection} selectedTemplate={selectedTemplate} />
+        <RightPreviewPanel
+          activeSection={activeSection}
+          selectedTemplate={selectedTemplate}
+          previewMode={previewMode}
+        />
       </main>
     </div>
   );
