@@ -3,9 +3,10 @@ import React from 'react';
 /**
  * TopBar container for navigation, app branding, and controls.
  * Brand-aligned color, sticky positioning, and accessible structure.
- * Adds template selector, export button (stub), resume/cover toggle, and AI (disabled) controls.
+ * Adds template selector, export/download buttons, resume/cover toggle, and AI (disabled) controls.
  * 
  * PUBLIC_INTERFACE
+ * @param {function} onExport - Export handler. Accepts exportType argument: 'pdf' or 'docx' e.g. onExport('pdf')
  */
 function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onTogglePreviewMode, previewOpen, onTogglePreviewPanel }) {
   // Available template choices

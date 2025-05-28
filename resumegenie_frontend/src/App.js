@@ -176,7 +176,8 @@ function App() {
       <TopBar
         selectedTemplate={selectedTemplate}
         onTemplateChange={setSelectedTemplate}
-        onExport={() => handleExport(previewMode === 'resume' ? 'Resume' : 'Cover Letter')}
+        // PUBLIC_INTERFACE: onExport handler accepts exportType: 'pdf' | 'docx'
+        onExport={handleExport}
         previewMode={previewMode}
         onTogglePreviewMode={() => setPreviewMode(m => (m === 'resume' ? 'cover' : 'resume'))}
         previewOpen={previewOpen}
