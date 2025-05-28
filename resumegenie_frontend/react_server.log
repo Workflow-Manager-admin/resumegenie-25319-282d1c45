@@ -111,3 +111,27 @@ Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' i
 
 webpack compiled with 2 errors
 Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+ERROR in ./src/App.js 9:0-70
+Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+webpack compiled with 1 error
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+ERROR in ./src/App.js 9:0-70
+Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+webpack compiled with 1 error
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+ERROR in ./src/App.js 9:0-70
+Module not found: Error: Can't resolve './components/layout/RightPreviewPanel' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+webpack compiled with 1 error
+Compiling...
