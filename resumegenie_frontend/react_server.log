@@ -24,3 +24,37 @@ webpack compiled successfully
 Compiling...
 Compiled successfully!
 webpack compiled successfully
+Compiling...
+Compiled with warnings.
+
+Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in ./src/App.js 160:18-33
+Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+WARNING in ./src/App.js 182:27-41
+Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+webpack compiled with 2 warnings
+Compiling...
+Compiled with warnings.
+
+Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in ./src/App.js 160:18-33
+Module not found: Error: Can't resolve 'jspdf' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+WARNING in ./src/App.js 182:27-41
+Module not found: Error: Can't resolve 'docx' in '/home/kavia/workspace/code-generation/resumegenie-25319-282d1c45/resumegenie_frontend/src'
+
+webpack compiled with 2 warnings
