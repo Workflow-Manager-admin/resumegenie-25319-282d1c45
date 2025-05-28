@@ -584,6 +584,12 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
         >
           Preview:&nbsp;{previewMode === 'resume' ? 'Resume' : 'Cover Letter'}
         </span>
+        {/* Mobile: floating preview panel toggle (only show when panel is hidden or on small screens) */}
+        <span className="central-preview-fab" style={{
+          display: 'none'
+        }}>
+          {/* Set by CSS media query; or forcibly display if previewOpen is false */}
+        </span>
         {/* 
           === AI Content Controls Placeholder Area ===
           "AI Suggest" button is disabled, serves as stub for future AI-powered suggestions (grammar, spelling, tone, pre-fill).
