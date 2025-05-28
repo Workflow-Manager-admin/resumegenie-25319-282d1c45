@@ -38,28 +38,29 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
           {/* Preview toggle button */}
           <button
             style={{
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid var(--border-color)',
-              borderRadius: 5,
-              color: 'var(--text-color)',
-              fontSize: 15,
-              padding: '6px 13px',
-              fontWeight: 500,
+              background: 'linear-gradient(93deg, var(--accent) 17%, var(--secondary-bg) 95%)',
+              border: '1.5px solid var(--accent)',
+              borderRadius: 7,
+              color: '#fff',
+              fontSize: 15.3,
+              padding: '7px 17px',
+              fontWeight: 600,
               marginRight: 12,
               cursor: 'pointer',
-              outlineOffset: '1px'
+              outlineOffset: '2px',
+              boxShadow: '0 1px 7px 0 rgba(190,115,211,0.09)'
             }}
             onClick={onTogglePreviewMode}
             aria-label="Toggle between Resume and Cover Letter preview mode"
           >
             {previewMode === 'resume'
-              ? <>Resume <span style={{ color: '#be73d3', marginLeft: 2 }}>/ Cover Letter</span></>
-              : <>Cover Letter <span style={{ color: '#be73d3', marginLeft: 2 }}>/ Resume</span></>
+              ? <>Resume <span style={{ color: 'var(--accent)', marginLeft: 2 }}>/ Cover Letter</span></>
+              : <>Cover Letter <span style={{ color: 'var(--accent)', marginLeft: 2 }}>/ Resume</span></>
             }
           </button>
 
           {/* Template Selector */}
-          <label htmlFor="template-selector" style={{ color: 'var(--text-secondary)', marginRight: 6, fontSize: 14 }}>
+          <label htmlFor="template-selector" style={{ color: 'var(--text-secondary)', marginRight: 6, fontSize: 14.2 }}>
             Template:
           </label>
           <select
@@ -67,12 +68,14 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             value={selectedTemplate}
             onChange={e => onTemplateChange && onTemplateChange(e.target.value)}
             style={{
-              background: 'rgba(255,255,255,0.07)',
-              border: '1px solid var(--border-color)',
-              borderRadius: 4,
-              color: 'var(--text-color)',
-              fontSize: 15,
-              padding: '5px 10px',
+              background: 'var(--panel-bg)',
+              border: '1.5px solid var(--accent)',
+              borderRadius: 5,
+              color: 'var(--accent)',
+              fontWeight: 600,
+              fontSize: 15.2,
+              padding: '7px 13px',
+              marginRight: 4
             }}
             aria-label="Select Template"
           >
@@ -84,7 +87,13 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
           {/* Export button (functional stub) */}
           <button
             className="btn"
-            style={{ fontWeight: 500, marginLeft: 10, minWidth: 88 }}
+            style={{
+              fontWeight: 600,
+              marginLeft: 10,
+              minWidth: 88,
+              background: 'linear-gradient(90deg, var(--secondary-bg) 70%, var(--accent) 120%)',
+              border: '1.5px solid var(--accent)'
+            }}
             onClick={onExport}
             aria-label="Export current document (Resume/Cover Letter)"
           >
@@ -97,8 +106,8 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             style={{
               marginLeft: 8,
               minWidth: 120,
-              background: 'rgba(220, 144, 208, 0.13)',
-              color: '#be73d3',
+              background: 'rgba(190,115,211,0.11)',
+              color: 'var(--accent)',
               opacity: 0.45,
               cursor: 'not-allowed'
             }}
@@ -117,7 +126,7 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             style={{
               marginLeft: 4,
               minWidth: 50,
-              background: 'rgba(255,255,255,0.07)',
+              background: 'rgba(190,115,211,0.07)',
               color: '#fff',
               opacity: 0.48,
               cursor: 'not-allowed',
@@ -134,7 +143,7 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             style={{
               marginLeft: 2,
               minWidth: 56,
-              background: 'rgba(255,255,255,0.07)',
+              background: 'rgba(190,115,211,0.07)',
               color: '#fff',
               opacity: 0.48,
               cursor: 'not-allowed',
