@@ -21,6 +21,51 @@ body {
   flex-direction: column;
 }
 
+/* ResumeGenie Main Layout Overrides */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  min-height: calc(100vh - 64px);
+  background: var(--kavia-dark);
+}
+
+.left-nav-panel,
+.central-form-container,
+.right-preview-panel {
+  transition: all 0.2s;
+}
+
+/* Responsive Layout */
+@media (max-width: 1050px) {
+  .right-preview-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .left-nav-panel {
+    display: none;
+  }
+  .main-container {
+    flex-direction: column;
+  }
+  .central-form-container {
+    max-width: 100vw;
+    min-width: 100vw;
+    min-height: unset;
+    height: unset;
+  }
+}
+
+/* Accessibility focus ring highlight for container panel stubs */
+.left-nav-panel:focus,
+.central-form-container:focus,
+.right-preview-panel:focus {
+  outline: 2px solid var(--kavia-orange);
+  outline-offset: 1px;
+}
+
 .navbar {
   background-color: var(--kavia-dark);
   padding: 16px;
