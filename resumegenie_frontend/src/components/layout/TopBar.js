@@ -100,7 +100,11 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             Export
           </button>
 
-          {/* AI-powered suggest button (disabled stub) */}
+          {/* 
+            === AI-powered Suggest Button ===
+            Disabled, visual-only stub; when enabled, will apply AI grammar/spell/tone improvements to whole document.
+            Implementation: Connect to future /ai/suggest endpoint with all form data as payload.
+          */}
           <button
             className="btn"
             style={{
@@ -118,6 +122,32 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             {/* UFO/AI Sparkle Emoji for stub effect */}
             <span style={{ marginRight: 6 }}>✨</span>
             AI Suggest
+          </button>
+          {/* 
+            === AI-powered Grammar/Spell/Tone Feedback Icon (stub) ===
+            Serves as explainer/control placeholder for global AI in TopBar.
+            In the future, clicking this will open an insights panel or show feedback on writing quality, spelling, and tone.
+          */}
+          <button
+            style={{
+              marginLeft: 6,
+              background: 'rgba(115,211,190,0.10)',
+              border: 'none',
+              borderRadius: 6,
+              color: 'var(--accent)',
+              fontWeight: 500,
+              fontSize: 15,
+              opacity: 0.34,
+              cursor: 'not-allowed',
+              minWidth: 46,
+              padding: '0.5em 1em'
+            }}
+            disabled
+            aria-disabled="true"
+            tabIndex={-1}
+            title="AI-powered grammar & tone insights (coming soon)"
+          >
+            <span role="img" aria-label="AI Grammar/Tone">📝</span>
           </button>
 
           {/* Export as PDF/Docx direct selectors (future, stub & disabled) */}
