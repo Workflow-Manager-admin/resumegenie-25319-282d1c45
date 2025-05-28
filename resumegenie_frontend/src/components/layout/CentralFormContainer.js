@@ -542,21 +542,23 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
 
   // Main JSX rendering
   return (
-    <section
-      className="central-form-container"
-      style={{
-        flex: '2 1 520px',
-        minWidth: 300,
-        maxWidth: 700,
-        padding: '2rem 1.5rem',
-        background: 'rgba(40, 35, 60, 0.98)',
-        height: 'calc(100vh - 64px)',
-        overflowY: 'auto',
-        boxSizing: 'border-box'
-      }}
-      aria-label="Resume/Cover Letter Form"
-      tabIndex={0}
-    >
+    <>
+      <section
+        className="central-form-container"
+        style={{
+          flex: previewOpen ? '2 1 520px' : '3 1 950px',
+          minWidth: 300,
+          maxWidth: previewOpen ? 700 : 1150,
+          padding: '2rem 1.5rem',
+          background: 'rgba(40, 35, 60, 0.98)',
+          height: 'calc(100vh - 64px)',
+          overflowY: 'auto',
+          boxSizing: 'border-box',
+          transition: 'all 0.2s cubic-bezier(.5,.21,.17,.98)'
+        }}
+        aria-label="Resume/Cover Letter Form"
+        tabIndex={0}
+      >
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 10, marginLeft: 2 }}>
         <h2 style={{
           color: 'var(--kavia-accent)',
