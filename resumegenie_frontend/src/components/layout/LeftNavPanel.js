@@ -36,18 +36,21 @@ function LeftNavPanel({ sections = [], activeSection, onSectionChange }) {
                 type="button"
                 onClick={() => onSectionChange && onSectionChange(section.id)}
                 style={{
-                  background: activeSection === section.id ? 'var(--kavia-orange)' : 'none',
+                  background: activeSection === section.id ? 'linear-gradient(93deg,var(--accent) 47%, var(--secondary-bg) 93%)' : 'transparent',
                   border: 'none',
-                  color: activeSection === section.id ? '#fff' : 'inherit',
+                  color: activeSection === section.id ? '#fff' : 'var(--text-secondary)',
                   font: 'inherit',
                   cursor: 'pointer',
-                  padding: '8px 14px',
+                  padding: '10px 16px',
                   width: '100%',
                   textAlign: 'left',
                   fontWeight: activeSection === section.id ? 600 : 400,
-                  borderRadius: 4,
+                  borderRadius: 5,
                   marginBottom: 2,
-                  transition: 'background 0.13s, color 0.13s'
+                  marginTop: 1,
+                  letterSpacing: activeSection === section.id ? '0.002em' : undefined,
+                  boxShadow: activeSection === section.id ? '0 2px 8px 0 rgba(190,115,211,0.17)' : undefined,
+                  transition: 'background 0.13s, color 0.13s, box-shadow 0.13s'
                 }}
                 aria-current={activeSection === section.id ? 'page' : undefined}
                 tabIndex={0}
