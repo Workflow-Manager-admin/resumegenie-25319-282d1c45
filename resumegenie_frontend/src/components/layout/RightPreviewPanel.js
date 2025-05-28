@@ -14,14 +14,17 @@ function RightPreviewPanel({ activeSection, selectedTemplate, previewMode, formD
   // Add a sliding panel class if not open.
   const panelClass = previewOpen ? "right-preview-panel" : "right-preview-panel slide-collapsed";
 
+  // Show "reopen" button on desktop when panel is closed
+  // Visible only on >=1050px viewport with inline style & a matching media query in App.css for visibility
+  // The floating FAB for mobile is handled inside CentralFormContainer
+
   return (
     <aside
       className={panelClass}
       aria-label="Live Preview Panel"
       tabIndex={0}
     >
-      {/* Show a collapsed/reopen button on the panel edge for desktop (visible only when closed on larger screens),
-          optionally as a vertical tab - can be improved with more CSS if needed */}
+      {/* Show a collapsed/reopen button on the panel edge for desktop (visible only when closed and on large screens) */}
       {!previewOpen && (
         <button
           aria-label="Open preview panel"
@@ -39,7 +42,8 @@ function RightPreviewPanel({ activeSection, selectedTemplate, previewMode, formD
             padding: '13px 7px 15px 2px',
             fontWeight: 700,
             boxShadow: '0 1.5px 10px 0 rgba(190,115,211,0.21)',
-            display: 'none'
+            display: 'block',
+            // Only show on desktop screens: hide on tablet/mobile via media query
           }}
           className="right-preview-reopen"
         >
