@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './App.css';
 
 import TopBar from './components/layout/TopBar';
@@ -58,6 +58,12 @@ function App() {
 
   // Panel preview visibility state
   const [previewOpen, setPreviewOpen] = useState(true);
+
+  // Use a single, memoized toggle everywhere for total consistency
+  // PUBLIC_INTERFACE
+  const togglePreviewPanel = useCallback(() => {
+    setPreviewOpen(prev => !prev);
+  }, []);
 
   // Utility to format data into "resume" text blocks (for PDF/Word export)
   function formatResumeData({ formData, selectedTemplate, previewMode }) {
