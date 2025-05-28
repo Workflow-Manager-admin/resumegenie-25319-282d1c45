@@ -194,29 +194,21 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             <span role="img" aria-label="AI Grammar/Tone">📝</span>
           </button>
 
-          {/* === Export Download Buttons (PDF & Word) ===
-            The logic for exporting as PDF or Word will be added here.
-            These buttons are currently disabled (visual only).
-            Implementation plan:
-              - For PDF: Integrate a library such as jsPDF or html2pdf, and implement a handler here
-              - For DOCX: Consider using docx.js or server-based approach; add related handler here
-              - Connect each handler to actual "download" logic and enable controls when ready
-          */}
+          {/* === Export Download Buttons (PDF & Word) === */}
           <button
             className="btn"
             style={{
               marginLeft: 4,
               minWidth: 50,
-              background: 'rgba(190,115,211,0.07)',
+              background: 'linear-gradient(90deg, var(--secondary-bg) 70%, var(--accent) 120%)',
               color: '#fff',
-              opacity: 0.48,
-              cursor: 'not-allowed',
-              border: 'none'
+              border: '1.5px solid var(--accent)',
+              opacity: 1,
+              cursor: 'pointer',
             }}
-            // When enabled, call export-to-PDF handler here
-            title="Export to PDF (coming soon)"
-            disabled
-            aria-disabled="true"
+            type="button"
+            title="Export to PDF"
+            onClick={() => onExport('pdf')}
           >
             PDF
           </button>
@@ -225,16 +217,15 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
             style={{
               marginLeft: 2,
               minWidth: 56,
-              background: 'rgba(190,115,211,0.07)',
+              background: 'linear-gradient(90deg, var(--secondary-bg) 60%, var(--accent) 100%)',
               color: '#fff',
-              opacity: 0.48,
-              cursor: 'not-allowed',
-              border: 'none'
+              border: '1.5px solid var(--accent)',
+              opacity: 1,
+              cursor: 'pointer',
             }}
-            // When enabled, call export-to-Word (DOCX) handler here
-            title="Export to Word (.docx) (coming soon)"
-            disabled
-            aria-disabled="true"
+            type="button"
+            title="Export to Word (.docx)"
+            onClick={() => onExport('docx')}
           >
             DOCX
           </button>
