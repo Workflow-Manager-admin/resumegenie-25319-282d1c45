@@ -196,23 +196,69 @@ body {
   margin-bottom: 16px;
 }
 
+/* Buttons & interactive controls */
 .btn {
-  background-color: var(--kavia-orange);
-  color: white;
+  background: linear-gradient(90deg, var(--secondary-bg) 60%, var(--accent) 140%);
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: 500;
+  box-shadow: 0 2px 8px 0 rgba(35,23,61,0.09);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: 
+    background 0.18s,
+    color 0.14s,
+    transform 0.11s,
+    opacity 0.15s;
 }
 
-.btn:hover {
-  background-color: #FF8B4D;
+.btn:hover:enabled, .btn:focus-visible:not([disabled]) {
+  background: linear-gradient(90deg, var(--accent) 60%, var(--secondary-bg) 130%);
+  outline: 2px solid var(--kavia-accent);
+  color: #fff;
+  transform: translateY(-1px) scale(1.03);
+  opacity: 0.96;
 }
 
+.btn[disabled], .btn[aria-disabled="true"] {
+  filter: grayscale(0.2) brightness(0.95);
+  opacity: 0.65 !important;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--secondary-bg) 70%, var(--primary-bg) 130%);
+}
+
+/* Large button */
 .btn-large {
   padding: 12px 24px;
-  font-size: 1.1rem;
+  font-size: 1.13rem;
+}
+
+/* Custom select, inputs, and basic fields (reuse for minimal maintainability) */
+select,
+input[type="text"], input[type="email"], input[type="password"] {
+  background: var(--panel-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 7px 10px;
+  margin: 0 2px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border 0.12s;
+}
+
+select:focus, input:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+}
+
+@media (max-width: 600px) {
+  select,
+  input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 13px;
+    padding: 5.5px 8px;
+  }
 }
