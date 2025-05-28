@@ -7,7 +7,7 @@ import React from 'react';
  *
  * PUBLIC_INTERFACE
  */
-function RightPreviewPanel({ activeSection, selectedTemplate, previewMode }) {
+function RightPreviewPanel({ activeSection, selectedTemplate, previewMode, formData }) {
   // Accept props for live preview - will render real docs in future
   return (
     <aside
@@ -56,9 +56,23 @@ function RightPreviewPanel({ activeSection, selectedTemplate, previewMode }) {
           {selectedTemplate} template &mdash; {previewMode === 'cover' ? 'Cover Letter' : 'Resume'}<br />
           {activeSection ? `Section: ${activeSection}` : 'No section selected'}
         </div>
-        {/* TODO: Live rendered resume/cover doc here */}
-        <div style={{ color: '#fff', opacity: 0.8 }}>
-          Preview will appear here...
+        {/* Real-time preview data */}
+        <div style={{ color: '#fff', opacity: 0.9, marginTop: 12, fontSize: 14 }}>
+          {/* Simple structured preview - update/extend in future! */}
+          <span style={{ color: "var(--kavia-orange)", fontWeight: 700 }}>Live Form Data:</span>
+          <pre style={{
+            fontSize: 13.5,
+            background: "rgba(190,115,211,0.06)",
+            padding: '12px 16px',
+            borderRadius: 7,
+            maxWidth: 330,
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word",
+            color: "#e0e0ef",
+            marginTop: 6,
+          }}>
+            {JSON.stringify(formData, null, 2)}
+          </pre>
         </div>
       </section>
       {/* TODO: Insert analytics, download shortcut, or view switcher as needed */}
