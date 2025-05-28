@@ -582,7 +582,12 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
         >
           Preview:&nbsp;{previewMode === 'resume' ? 'Resume' : 'Cover Letter'}
         </span>
-        {/* AI Suggest button (disabled, stub only) */}
+        {/* 
+          === AI Content Controls Placeholder Area ===
+          "AI Suggest" button is disabled, serves as stub for future AI-powered suggestions (grammar, spelling, tone, pre-fill).
+          When implemented, this will invoke an API that analyzes section fields or full document and provides recommended edits/content.
+          This button is duplicated in TopBar for global AI actions; instance here provides section-level recommendations.
+        */}
         <button
           style={{
             background: 'rgba(190,115,211,0.10)',
@@ -602,6 +607,48 @@ function CentralFormContainer({ sectionId, sectionLabel, previewMode, onAISugges
           tabIndex={-1}
         >
           <span role="img" aria-label="AI">✨</span> AI Suggest
+        </button>
+        {/* 
+          === AI-powered grammar, spell, and tone indicators (planned) ===
+          Add future icons/labels for:
+            - Spell Check
+            - Grammar Check
+            - Tone/Style Feedback 
+            These will be used to show suggestions or highlight issues; UI as icons or notification chips.
+        */}
+        <div
+          style={{
+            display: 'flex', alignItems: 'center', marginLeft: 8, gap: 8, opacity: 0.36
+          }}
+          aria-label="AI grammar and tone suggestion placeholders"
+        >
+          <span title="Grammar Helper (coming soon)" role="img" aria-label="Grammar">📝</span>
+          <span title="Spell Check (coming soon)" role="img" aria-label="Spell-Check">🔤</span>
+          <span title="Tone Suggestion (coming soon)" role="img" aria-label="Tone">🎤</span>
+        </div>
+        {/* 
+          === Pre-fill Content Stub UI (disabled) ===
+          This will allow future users to auto-populate form with role/industry-based example data using AI.
+        */}
+        <button
+          style={{
+            marginLeft: 8,
+            opacity: 0.35,
+            background: 'rgba(115,211,190,0.08)',
+            color: 'var(--accent)',
+            border: 'none',
+            borderRadius: 5,
+            fontWeight: 500,
+            fontSize: 14.1,
+            padding: '3px 14px',
+            cursor: 'not-allowed'
+          }}
+          title="Pre-fill example content (AI, coming soon)"
+          aria-disabled="true"
+          disabled
+          tabIndex={-1}
+        >
+          <span role="img" aria-label="Prefill">🤖</span> Pre-fill Section
         </button>
       </div>
 
