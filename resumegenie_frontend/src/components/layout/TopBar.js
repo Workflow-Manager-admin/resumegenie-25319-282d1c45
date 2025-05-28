@@ -49,7 +49,7 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
         </div>
         {/* Controls section */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          {/* Preview toggle button */}
+          {/* Preview mode toggle button only changes preview mode, not panel visibility */}
           <button
             style={{
               background: 'linear-gradient(93deg, var(--accent) 17%, var(--secondary-bg) 95%)',
@@ -72,7 +72,7 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
               : <>Cover Letter <span style={{ color: 'var(--accent)', marginLeft: 2 }}>/ Resume</span></>
             }
           </button>
-          {/* Template Selector with toggle immediately after */}
+          {/* Template Selector with compact panel toggle beside */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <label htmlFor="template-selector" style={{ color: 'var(--text-secondary)', marginRight: 6, fontSize: 14.2 }}>
               Template:
@@ -98,11 +98,12 @@ function TopBar({ selectedTemplate, onTemplateChange, onExport, previewMode, onT
                 <option key={template} value={template}>{template}</option>
               ))}
             </select>
-            {/* Compact Hide/Show Preview toggle button */}
+            {/* COMPACT panel toggle button:
+                This only toggles the PREVIEW PANEL visibility, using unified handler for layout consistency */}
             <button
               className="preview-toggle-compact"
               aria-label={previewOpen ? "Hide preview panel" : "Show preview panel"}
-              onClick={onTogglePreviewPanel}
+              onClick={() => onTogglePreviewPanel && onTogglePreviewPanel()}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
