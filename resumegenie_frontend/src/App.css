@@ -161,6 +161,7 @@ body {
   }
 }
 
+/* Section + text styles */
 .hero {
   padding-top: 120px;
   padding-bottom: 64px;
@@ -171,10 +172,11 @@ body {
   gap: 24px;
 }
 
+/* App-wide section titles, subtitles */
 .subtitle {
-  color: var(--kavia-orange);
+  color: var(--accent);
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.11rem;
 }
 
 .title {
@@ -182,10 +184,12 @@ body {
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
+  color: var(--kavia-accent);
+  text-shadow: 0 2px 16px rgba(34,20,50,0.15);
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 1.12rem;
   line-height: 1.5;
   color: var(--text-secondary);
   max-width: 600px;
